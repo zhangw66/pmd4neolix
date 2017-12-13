@@ -1,0 +1,745 @@
+--------- beginning of system
+12-11 05:39:07.805   594  1877 V ActivityManager: Starting activity when config will change = false
+12-11 05:39:07.805   594  1877 I ActivityManager: START u0 {act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 cmp=com.neolix.neolixcubing/.MainActivity bnds=[768,863][1019,1199] (has extras)} from uid 10040 on display 0
+12-11 05:39:07.805   594  1877 V ActivityManager: Will send result to Token{454d06a ActivityRecord{11d583f u0 com.android.launcher3/.Launcher t186}} ActivityRecord{11d583f u0 com.android.launcher3/.Launcher t186}
+12-11 05:39:07.806   594  1877 V ActivityManager: startActivity() => mUserLeaving=true
+12-11 05:39:07.806   594  1877 D ActivityManager: Looking for task of ActivityRecord{2a4b65b u0 com.neolix.neolixcubing/.MainActivity t-1}
+12-11 05:39:07.806   594  1877 D ActivityManager: Looking for task of ActivityRecord{2a4b65b u0 com.neolix.neolixcubing/.MainActivity t-1} in ActivityStack{672809b stackId=0, 1 tasks}
+12-11 05:39:07.806   594  1877 D ActivityManager: Skipping TaskRecord{a1bf50c #186 ?? U=0 StackId=0 sz=1}: mismatch activity type
+12-11 05:39:07.806   594  1877 D ActivityManager: No task found
+12-11 05:39:07.806   594  1877 D ActivityManager: Creating ActivtyContainer{1}N
+12-11 05:39:07.806   594  1877 D ActivityManager: attachToDisplayLocked: ActivtyContainer{1}N to display=ActivityDisplay={0 numStacks=1} onTop=true
+12-11 05:39:07.806   594  1877 V ActivityManager: attachActivities: attaching ActivityStack{ab39fd1 stackId=1, 0 tasks} to displayId=0 onTop=true
+12-11 05:39:07.806   594  1877 D ActivityManager: computeStackFocus: New stack r=ActivityRecord{2a4b65b u0 com.neolix.neolixcubing/.MainActivity t-1} stackId=1
+12-11 05:39:07.807   594  1877 V ActivityManager: Looking for task id=189 in recents
+12-11 05:39:07.807   594  1877 D ActivityManager: 	Didn't find task id=189 in recents
+12-11 05:39:07.807   594  1877 V ActivityManager: Setting Intent of TaskRecord{5d2ea36 #189 A=com.neolix.neolixcubing U=0 StackId=-1 sz=0} to Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 cmp=com.neolix.neolixcubing/.MainActivity (has extras) }
+12-11 05:39:07.807   594  1877 D ActivityManager: setLockTaskAuth: task=TaskRecord{5d2ea36 #189 A=com.neolix.neolixcubing U=0 StackId=-1 sz=0} mLockTaskAuth=LOCK_TASK_AUTH_PINNABLE
+12-11 05:39:07.807   594  1877 V ActivityManager: Starting new activity ActivityRecord{2a4b65b u0 com.neolix.neolixcubing/.MainActivity t189} in new task TaskRecord{5d2ea36 #189 A=com.neolix.neolixcubing U=0 StackId=1 sz=0}
+--------- beginning of main
+12-11 05:39:07.807   322   356 D AudioHardwareTiny: out_set_parameters: kvpairs = routing=2
+12-11 05:39:07.807   594  1877 V ActivityManager: Checking URI perm to data=null clip=null from Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 cmp=com.neolix.neolixcubing/.MainActivity bnds=[768,863][1019,1199] (has extras) }; flags=0x10200000
+12-11 05:39:07.808   322   356 D AudioHardwareTiny: start_output_stream
+12-11 05:39:07.808   594  1877 I ActivityManager: Adding activity ActivityRecord{2a4b65b u0 com.neolix.neolixcubing/.MainActivity t189} to stack to task TaskRecord{5d2ea36 #189 A=com.neolix.neolixcubing U=0 StackId=1 sz=0}
+12-11 05:39:07.808   594  1877 I ActivityManager: java.lang.RuntimeException: here
+12-11 05:39:07.808   594  1877 I ActivityManager: 	at com.android.server.am.ActivityStack.startActivityLocked(ActivityStack.java:2806)
+12-11 05:39:07.808   594  1877 I ActivityManager: 	at com.android.server.am.ActivityStarter.startActivityUnchecked(ActivityStarter.java:1220)
+12-11 05:39:07.808   594  1877 I ActivityManager: 	at com.android.server.am.ActivityStarter.startActivityLocked(ActivityStarter.java:516)
+12-11 05:39:07.808   594  1877 I ActivityManager: 	at com.android.server.am.ActivityStarter.startActivityMayWait(ActivityStarter.java:860)
+12-11 05:39:07.808   594  1877 I ActivityManager: 	at com.android.server.am.ActivityManagerService.startActivityAsUser(ActivityManagerService.java:4535)
+12-11 05:39:07.808   594  1877 I ActivityManager: 	at com.android.server.am.ActivityManagerService.startActivity(ActivityManagerService.java:4503)
+12-11 05:39:07.808   594  1877 I ActivityManager: 	at android.app.ActivityManagerNative.onTransact(ActivityManagerNative.java:165)
+12-11 05:39:07.808   594  1877 I ActivityManager: 	at com.android.server.am.ActivityManagerService.onTransact(ActivityManagerService.java:2909)
+12-11 05:39:07.808   594  1877 I ActivityManager: 	at android.os.Binder.execTransact(Binder.java:565)
+12-11 05:39:07.808   594  1877 V ActivityManager: Prepare open transition: starting ActivityRecord{2a4b65b u0 com.neolix.neolixcubing/.MainActivity t189}
+12-11 05:39:07.809   322   356 D alsa_route: route_info->sound_card 0, route_info->devices 0  
+12-11 05:39:07.810   322   356 D alsa_route: route_set_controls() set route 0
+12-11 05:39:07.812   594  1877 D ActivityManager: com.android.server.am.ActivityStack.resumeTopActivityInnerLocked:2201 com.android.server.am.ActivityStack.resumeTopActivityUncheckedLocked:2160 : mLockScreenShown=LOCK_SCREEN_HIDDEN mWakefulness=Awake mSleeping=false
+12-11 05:39:07.812   594  1877 V ActivityManager: Resuming ActivityRecord{2a4b65b u0 com.neolix.neolixcubing/.MainActivity t189}
+12-11 05:39:07.812   594  1877 D ActivityManager: pauseBackStacks: stack=ActivityStack{672809b stackId=0, 1 tasks} mResumedActivity=ActivityRecord{11d583f u0 com.android.launcher3/.Launcher t186}
+12-11 05:39:07.813   594  1877 V ActivityManager: Moving to PAUSING: ActivityRecord{11d583f u0 com.android.launcher3/.Launcher t186}
+12-11 05:39:07.813   594  1877 V ActivityManager: Enqueueing pending pause: ActivityRecord{11d583f u0 com.android.launcher3/.Launcher t186}
+12-11 05:39:07.813   594  1877 D ActivityManager: updateUsageStats: comp=ActivityRecord{11d583f u0 com.android.launcher3/.Launcher t186}res=false
+12-11 05:39:07.814   594  1877 V ActivityManager: Waiting for pause to complete...
+12-11 05:39:07.814   594  1877 V ActivityManager: resumeTopActivityLocked: Skip resume: need to start pausing
+12-11 05:39:07.821   594   606 V ActivityManager: Activity paused: token=Token{454d06a ActivityRecord{11d583f u0 com.android.launcher3/.Launcher t186}}, timeout=false
+12-11 05:39:07.821   594   606 V ActivityManager: Moving to PAUSED: ActivityRecord{11d583f u0 com.android.launcher3/.Launcher t186} (pause complete)
+12-11 05:39:07.821   594   606 V ActivityManager: Complete pause: ActivityRecord{11d583f u0 com.android.launcher3/.Launcher t186}
+12-11 05:39:07.821   594   606 V ActivityManager: Enqueue pending stop if needed: ActivityRecord{11d583f u0 com.android.launcher3/.Launcher t186} wasStopping=false visible=true
+12-11 05:39:07.822   594   606 D ActivityManager: com.android.server.am.ActivityStack.resumeTopActivityInnerLocked:2201 com.android.server.am.ActivityStack.resumeTopActivityUncheckedLocked:2160 : mLockScreenShown=LOCK_SCREEN_HIDDEN mWakefulness=Awake mSleeping=false
+12-11 05:39:07.822   594   606 V ActivityManager: Resuming ActivityRecord{2a4b65b u0 com.neolix.neolixcubing/.MainActivity t189}
+12-11 05:39:07.822   594   606 V ActivityManager: Resuming top, waiting visible to hide: ActivityRecord{11d583f u0 com.android.launcher3/.Launcher t186}
+12-11 05:39:07.822   594   606 V ActivityManager: Prepare open transition: prev=ActivityRecord{11d583f u0 com.android.launcher3/.Launcher t186}
+12-11 05:39:07.822   594   606 D ActivityManager: resumeTopActivityLocked: Restarting ActivityRecord{2a4b65b u0 com.neolix.neolixcubing/.MainActivity t189}
+12-11 05:39:07.822   594   606 V ActivityManager: Clearing bad process: 1000/com.neolix.neolixcubing
+12-11 05:39:07.822   594   606 V xzj     : startProcess: name=com.neolix.neolixcubing app=null knownToBeDead=true hostingType=activity intentFlags=0 thread=null pid=-1
+12-11 05:39:07.823   594   606 V ActivityManager: startProcess: name=com.neolix.neolixcubing app=null knownToBeDead=true thread=null pid=-1
+12-11 05:39:07.837  1882  1882 I art     : Late-enabling -Xcheck:jni
+12-11 05:39:07.837  1882  1882 E art     : setrlimit(RLIMIT_CORE) failed for pid 1882: Operation not permitted
+12-11 05:39:07.838   594   606 I ActivityManager: Start proc 1882:com.neolix.neolixcubing/1000 for activity com.neolix.neolixcubing/.MainActivity
+12-11 05:39:07.839   594   606 V ActivityManager: ensureActivitiesVisible behind ActivityRecord{2a4b65b u0 com.neolix.neolixcubing/.MainActivity t189} configChanges=0x0
+12-11 05:39:07.839   594   606 V ActivityManager: Make visible? ActivityRecord{2a4b65b u0 com.neolix.neolixcubing/.MainActivity t189} finishing=false state=INITIALIZING
+12-11 05:39:07.839   594   606 V ActivityManager: Ensuring correct configuration: ActivityRecord{2a4b65b u0 com.neolix.neolixcubing/.MainActivity t189}
+12-11 05:39:07.839   594   606 V ActivityManager: Configuration unchanged in ActivityRecord{2a4b65b u0 com.neolix.neolixcubing/.MainActivity t189}
+12-11 05:39:07.839   594   606 V ActivityManager: Start and freeze screen for ActivityRecord{2a4b65b u0 com.neolix.neolixcubing/.MainActivity t189}
+12-11 05:39:07.839   594   606 V ActivityManager: Starting and making visible: ActivityRecord{2a4b65b u0 com.neolix.neolixcubing/.MainActivity t189}
+12-11 05:39:07.840   594   606 V ActivityManager: Clearing bad process: 1000/com.neolix.neolixcubing
+12-11 05:39:07.841   594   606 V xzj     : startProcess: name=com.neolix.neolixcubing app=ProcessRecord{bb7b91a 1882:com.neolix.neolixcubing/1000} knownToBeDead=true hostingType=activity intentFlags=0 thread=null pid=1882
+12-11 05:39:07.841   594   606 V ActivityManager: startProcess: name=com.neolix.neolixcubing app=ProcessRecord{bb7b91a 1882:com.neolix.neolixcubing/1000} knownToBeDead=true thread=null pid=1882
+12-11 05:39:07.841   594   606 V ActivityManager: App already running: ProcessRecord{bb7b91a 1882:com.neolix.neolixcubing/1000}
+12-11 05:39:07.841   594   606 V ActivityManager: Fullscreen: at ActivityRecord{2a4b65b u0 com.neolix.neolixcubing/.MainActivity t189} stackInvisible=false behindFullscreenActivity=false
+12-11 05:39:07.841   594   606 V ActivityManager: ensureActivitiesVisible behind ActivityRecord{11d583f u0 com.android.launcher3/.Launcher t186} configChanges=0x0
+12-11 05:39:07.841   594   606 V ActivityManager: Make invisible? ActivityRecord{11d583f u0 com.android.launcher3/.Launcher t186} finishing=false state=PAUSED stackInvisible=true behindFullscreenActivity=true mLaunchTaskBehind=false
+12-11 05:39:07.841   594   606 V ActivityManager: Making invisible: ActivityRecord{11d583f u0 com.android.launcher3/.Launcher t186} PAUSED
+12-11 05:39:07.841   594   606 D ActivityManager: screenshotActivitiesLocked: ActivityRecord{11d583f u0 com.android.launcher3/.Launcher t186}
+12-11 05:39:07.841   594   606 D ActivityManager: 	Home stack
+12-11 05:39:07.842   594   606 V ActivityManager: Scheduling idle now: forceIdle=trueimmediate=true
+12-11 05:39:07.842   594   606 V ActivityManager: Home task: at TaskRecord{a1bf50c #186 ?? U=0 StackId=0 sz=1} stackInvisible=true behindFullscreenActivity=true
+12-11 05:39:07.843   594   608 D ActivityManager: handleMessage: IDLE_NOW_MSG: r=null
+12-11 05:39:07.843   594   608 V ActivityManager: Activity idle: null
+12-11 05:39:07.843   594   608 D ActivityManager: allResumedActivitiesIdle: stack=1 null not idle
+12-11 05:39:07.843   594   608 V ActivityManager: Stopping ActivityRecord{11d583f u0 com.android.launcher3/.Launcher t186}: nowVisible=false waitingVisible=true finishing=false
+12-11 05:39:07.843   594   608 V ActivityManager: Set 1209 com.android.launcher3 adj 200: pausing
+12-11 05:39:07.844   594   608 V ActivityManager: Setting sched group of com.android.launcher3 to 1
+12-11 05:39:07.846   594   608 D ActivityManager: oom: memFactor=0 last=0 allowLow=true numProcs=25 last=25
+12-11 05:39:07.846   594   608 D ActivityManager: Did OOM ADJ in 3ms
+12-11 05:39:07.849   230   858 D mali_so : [File] : hardware/rockchip/libgralloc/gralloc_drm_rockchip.c; [Line] : 1323; [Func] : drm_gem_rockchip_alloc;
+12-11 05:39:07.849   230   858 D mali_so : to ask for cachable buffer for CPU access, usage : 0x933
+12-11 05:39:07.862   594   606 V ActivityManager: Binding process pid 1882 to record ProcessRecord{bb7b91a 1882:com.neolix.neolixcubing/1000}
+12-11 05:39:07.862   594   606 V ActivityManager: New death recipient com.android.server.am.ActivityManagerService$AppDeathRecipient@bbbec4b for thread android.os.BinderProxy@e04a628
+12-11 05:39:07.863   594   606 V ActivityManager_MU: generateApplicationProvidersLocked, app.info.uid = 1000
+12-11 05:39:07.863   594   606 V ActivityManager: New app record ProcessRecord{bb7b91a 1882:com.neolix.neolixcubing/1000} thread=android.os.BinderProxy@e04a628 pid=1882
+12-11 05:39:07.863   594   606 V ActivityManager: Binding proc com.neolix.neolixcubing with config {1.0 ?mcc?mnc [zh_CN_#Hans,en_US,zh_MO_#Hans] ldltr sw877dp w877dp h1098dp 280dpi xlrg port finger -keyb/v/h -nav/h s.5}
+12-11 05:39:07.864   594   606 D ActivityManager: Adding at 23 of LRU list: ProcessRecord{bb7b91a 1882:com.neolix.neolixcubing/1000}
+12-11 05:39:07.864   594   606 V ActivityManager: Ensuring correct configuration: ActivityRecord{2a4b65b u0 com.neolix.neolixcubing/.MainActivity t189}
+12-11 05:39:07.864   594   606 V ActivityManager: Configuration unchanged in ActivityRecord{2a4b65b u0 com.neolix.neolixcubing/.MainActivity t189}
+12-11 05:39:07.865   594   606 V ActivityManager: ensureActivitiesVisible behind ActivityRecord{2a4b65b u0 com.neolix.neolixcubing/.MainActivity t189} configChanges=0x0
+12-11 05:39:07.865   594   606 V ActivityManager: Make visible? ActivityRecord{2a4b65b u0 com.neolix.neolixcubing/.MainActivity t189} finishing=false state=INITIALIZING
+12-11 05:39:07.865   594   606 V ActivityManager: Start and freeze screen for ActivityRecord{2a4b65b u0 com.neolix.neolixcubing/.MainActivity t189}
+12-11 05:39:07.865   594   606 V ActivityManager: Fullscreen: at ActivityRecord{2a4b65b u0 com.neolix.neolixcubing/.MainActivity t189} stackInvisible=false behindFullscreenActivity=false
+12-11 05:39:07.865   594   606 V ActivityManager: ensureActivitiesVisible behind ActivityRecord{11d583f u0 com.android.launcher3/.Launcher t186} configChanges=0x0
+12-11 05:39:07.865   594   606 V ActivityManager: Make invisible? ActivityRecord{11d583f u0 com.android.launcher3/.Launcher t186} finishing=false state=PAUSED stackInvisible=true behindFullscreenActivity=true mLaunchTaskBehind=false
+12-11 05:39:07.865   594   606 V ActivityManager: Already invisible: ActivityRecord{11d583f u0 com.android.launcher3/.Launcher t186}
+12-11 05:39:07.865   594   606 V ActivityManager: Home task: at TaskRecord{a1bf50c #186 ?? U=0 StackId=0 sz=1} stackInvisible=true behindFullscreenActivity=true
+12-11 05:39:07.866   594   606 V ActivityManager: Launching: ActivityRecord{2a4b65b u0 com.neolix.neolixcubing/.MainActivity t189}
+12-11 05:39:07.867   594   606 D ActivityManager: Adding to top of LRU activity list: ProcessRecord{bb7b91a 1882:com.neolix.neolixcubing/1000}
+12-11 05:39:07.867   594   606 V ActivityManager: Set 1882 com.neolix.neolixcubing adj 0: top-activity
+12-11 05:39:07.867   594   606 V ActivityManager: Setting sched group of com.neolix.neolixcubing to 2
+12-11 05:39:07.868   594   606 D ActivityManager: Process state change from N  to T  next pss in 10000: ProcessRecord{bb7b91a 1882:com.neolix.neolixcubing/1000}
+12-11 05:39:07.868   594   606 V ActivityManager: Proc state change of com.neolix.neolixcubing to 2
+12-11 05:39:07.868   594   606 D ActivityManager: Checking proc [[com.neolix.neolixcubing]] state changes: old = -1, new = 2
+12-11 05:39:07.868   594   606 I ActivityManager: Changes in ProcessRecord{bb7b91a 1882:com.neolix.neolixcubing/1000}: 3
+12-11 05:39:07.868   594   606 I ActivityManager: Retrieving available item: com.android.server.am.ActivityManagerService$ProcessChangeItem@85cec10
+12-11 05:39:07.868   594   606 I ActivityManager: *** Enqueueing dispatch processes changed!
+12-11 05:39:07.868   594   606 I ActivityManager: Item 85cec10 1882:com.neolix.neolixcubing/1000: changes=3 procState=2 foreground=true type=top-activity source=null target=null
+12-11 05:39:07.869   594   606 D ActivityManager: oom: memFactor=0 last=0 allowLow=true numProcs=26 last=25
+12-11 05:39:07.869   594   606 D ActivityManager: Did OOM ADJ in 3ms
+12-11 05:39:07.869   594   606 V ActivityManager: Launching: ActivityRecord{2a4b65b u0 com.neolix.neolixcubing/.MainActivity t189} icicle=null with results=null newIntents=null andResume=true
+12-11 05:39:07.870   594   606 V ActivityManager: Moving to RESUMED: ActivityRecord{2a4b65b u0 com.neolix.neolixcubing/.MainActivity t189} (starting new instance) callers=com.android.server.am.ActivityStackSupervisor.realStartActivityLocked:1362 com.android.server.am.ActivityStackSupervisor.attachApplicationLocked:866 com.android.server.am.ActivityManagerService.attachApplicationLocked:6803 com.android.server.am.ActivityManagerService.attachApplication:6870 android.app.ActivityManagerNative.onTransact:539 
+12-11 05:39:07.871   594   606 D ActivityManager: addRecent: trimming tasks for TaskRecord{5d2ea36 #189 A=com.neolix.neolixcubing U=0 StackId=1 sz=1}
+12-11 05:39:07.871   594   606 D ActivityManager: addRecent: adding TaskRecord{5d2ea36 #189 A=com.neolix.neolixcubing U=0 StackId=1 sz=1}
+12-11 05:39:07.871   594   606 D ActivityManager: scheduleIdleTimeoutLocked: Callers=com.android.server.am.ActivityStack.completeResumeLocked:1460 com.android.server.am.ActivityStack.minimalResumeActivityLocked:910 com.android.server.am.ActivityStackSupervisor.realStartActivityLocked:1362 com.android.server.am.ActivityStackSupervisor.attachApplicationLocked:866 
+12-11 05:39:07.872   594   606 D ActivityManager: updateUsageStats: comp=ActivityRecord{2a4b65b u0 com.neolix.neolixcubing/.MainActivity t189}res=true
+12-11 05:39:07.872   594   606 D ActivityManager: allResumedActivitiesComplete: mLastFocusedStack changing from=ActivityStack{672809b stackId=0, 1 tasks} to=ActivityStack{ab39fd1 stackId=1, 1 tasks}
+12-11 05:39:07.872   594   606 V ActivityManager: ensureActivitiesVisible behind ActivityRecord{2a4b65b u0 com.neolix.neolixcubing/.MainActivity t189} configChanges=0x0
+12-11 05:39:07.872   594   606 V ActivityManager: Make visible? ActivityRecord{2a4b65b u0 com.neolix.neolixcubing/.MainActivity t189} finishing=false state=RESUMED
+12-11 05:39:07.872   594   606 V ActivityManager: Ensuring correct configuration: ActivityRecord{2a4b65b u0 com.neolix.neolixcubing/.MainActivity t189}
+12-11 05:39:07.872   594   606 V ActivityManager: Configuration unchanged in ActivityRecord{2a4b65b u0 com.neolix.neolixcubing/.MainActivity t189}
+12-11 05:39:07.872   594   606 V ActivityManager: Skipping: already visible at ActivityRecord{2a4b65b u0 com.neolix.neolixcubing/.MainActivity t189}
+12-11 05:39:07.872   594   606 V ActivityManager: Fullscreen: at ActivityRecord{2a4b65b u0 com.neolix.neolixcubing/.MainActivity t189} stackInvisible=false behindFullscreenActivity=false
+12-11 05:39:07.872   594   606 V ActivityManager: ensureActivitiesVisible behind ActivityRecord{11d583f u0 com.android.launcher3/.Launcher t186} configChanges=0x0
+12-11 05:39:07.872   594   606 V ActivityManager: Make invisible? ActivityRecord{11d583f u0 com.android.launcher3/.Launcher t186} finishing=false state=PAUSED stackInvisible=true behindFullscreenActivity=true mLaunchTaskBehind=false
+12-11 05:39:07.872   594   606 V ActivityManager: Already invisible: ActivityRecord{11d583f u0 com.android.launcher3/.Launcher t186}
+12-11 05:39:07.872   594   606 V ActivityManager: Home task: at TaskRecord{a1bf50c #186 ?? U=0 StackId=0 sz=1} stackInvisible=true behindFullscreenActivity=true
+12-11 05:39:07.874   594   606 I ActivityManager: Launch completed; removing icicle of null
+12-11 05:39:07.875   594   609 I ActivityManager: *** Delivering 1 process changes
+12-11 05:39:07.941   594  1877 V ActivityManager: getTasks: max=1, flags=0
+12-11 05:39:07.941   594  1877 V ActivityManager: com.neolix.neolixcubing/.MainActivity: task=TaskRecord{5d2ea36 #189 A=com.neolix.neolixcubing U=0 StackId=1 sz=1}
+12-11 05:39:07.941   594  1877 V ActivityManager: com.android.launcher3/.Launcher: task=TaskRecord{a1bf50c #186 ?? U=0 StackId=0 sz=1}
+12-11 05:39:07.943   594  1877 D ActivityManager: Skipping, home stack task: TaskRecord{a1bf50c #186 ?? U=0 StackId=0 sz=1}
+12-11 05:39:07.949   693   693 W asset   : Asset path /data/app/com.neolix.neolixcubing-1/split_lib_dependencies_apk.apk is neither a directory nor file (type=1).
+12-11 05:39:07.949   594  1877 D ActivityManager: Not moving, persistent: ProcessRecord{e98f45e 594:system/1000}
+12-11 05:39:07.949   693   693 E ResourcesManager: failed to add split asset path /data/app/com.neolix.neolixcubing-1/split_lib_dependencies_apk.apk
+12-11 05:39:07.949   594  1877 I ActivityManager: Adjust success: true
+12-11 05:39:07.949   693   693 W PackageManager: Failure retrieving resources for com.neolix.neolixcubing
+12-11 05:39:07.950   693   693 W asset   : Asset path /data/app/com.neolix.neolixcubing-1/split_lib_dependencies_apk.apk is neither a directory nor file (type=1).
+12-11 05:39:07.950   693   693 E ResourcesManager: failed to add split asset path /data/app/com.neolix.neolixcubing-1/split_lib_dependencies_apk.apk
+12-11 05:39:07.950   693   693 W PackageManager: Failure retrieving resources for com.neolix.neolixcubing
+12-11 05:39:07.951   693   693 W asset   : Asset path /data/app/com.neolix.neolixcubing-1/split_lib_dependencies_apk.apk is neither a directory nor file (type=1).
+12-11 05:39:07.951   693   693 E ResourcesManager: failed to add split asset path /data/app/com.neolix.neolixcubing-1/split_lib_dependencies_apk.apk
+12-11 05:39:07.951   693   693 W PackageManager: Failure retrieving resources for com.neolix.neolixcubing
+12-11 05:39:07.964  1882  1882 W art     : Before Android 4.1, method android.graphics.PorterDuffColorFilter android.support.graphics.drawable.VectorDrawableCompat.updateTintFilter(android.graphics.PorterDuffColorFilter, android.content.res.ColorStateList, android.graphics.PorterDuff$Mode) would have incorrectly overridden the package-private method in android.graphics.drawable.Drawable
+12-11 05:39:07.977   594   615 V ActivityManager: windowsGone(): ActivityRecord{11d583f u0 com.android.launcher3/.Launcher t186}
+12-11 05:39:08.043   594  1877 V ActivityManager: Report configuration: Token{a6ea2a4 ActivityRecord{2a4b65b u0 com.neolix.neolixcubing/.MainActivity t189}} null [I@5084ce6
+12-11 05:39:08.053   594  1877 D UI_FIFO : Set RenderThread tid 1898 for pid 1882
+12-11 05:39:08.053   594  1877 D UI_FIFO : Promoting 1898out of band
+12-11 05:39:08.075   594  1877 I ActivityManager: Resumed activity; dropping state of: ActivityRecord{2a4b65b u0 com.neolix.neolixcubing/.MainActivity t189}
+12-11 05:39:08.138  1882  1898 I mali_so : [File] : hardware/arm/maliT760/driver/product/base/src/mali_base_kbase.c; [Line] : 978; [Func] : base_context_deal_with_version_affairs_rk_ext;
+12-11 05:39:08.138  1882  1898 I mali_so : arm_release_ver of this mali_so is 'r14p0-01rel0', rk_so_ver is '4@0'.
+12-11 05:39:08.138  1882  1898 D mali_so : [File] : hardware/arm/maliT760/driver/product/base/src/mali_base_kbase.c; [Line] : 983; [Func] : base_context_deal_with_version_affairs_rk_ext;
+12-11 05:39:08.138  1882  1898 D mali_so : current process is NOT sf, to bail out.
+12-11 05:39:08.175  1882  1898 I OpenGLRenderer: Initialized EGL, version 1.4
+12-11 05:39:08.175  1882  1898 D OpenGLRenderer: Swap behavior 1
+12-11 05:39:08.197   230   858 E BufferQueueProducer: [com.neolix.neolixcubing/com.neolix.neolixcubing.MainActivity] connect: already connected (cur=1 req=1)
+12-11 05:39:08.199  1882  1898 D mali_winsys: EGLint new_window_surface(egl_winsys_display*, void*, EGLSurface, EGLConfig, egl_winsys_surface**, egl_color_buffer_format*, EGLBoolean) returns 0x3000
+12-11 05:39:08.288   594   615 D ActivityManager: notifyActivityDrawn: token=Token{a6ea2a4 ActivityRecord{2a4b65b u0 com.neolix.neolixcubing/.MainActivity t189}}
+12-11 05:39:08.288   594   615 I ActivityManager: Displayed com.neolix.neolixcubing/.MainActivity: +466ms
+12-11 05:39:08.289   594   615 V ActivityManager: windowsVisibleLocked(): ActivityRecord{2a4b65b u0 com.neolix.neolixcubing/.MainActivity t189}
+12-11 05:39:08.289   594   615 V ActivityManager: Stopping ActivityRecord{11d583f u0 com.android.launcher3/.Launcher t186}: nowVisible=true waitingVisible=true finishing=false
+12-11 05:39:08.290   594  1877 V ActivityManager: bindService: Intent { act=android.view.InputMethod cmp=com.android.inputmethod.latin/.LatinIME (has extras) } type=null conn=android.app.LoadedApk$ServiceDispatcher$InnerConnection@aba12be flags=0xc000001
+12-11 05:39:08.290   594  1877 V ActivityManager: retrieveServiceLocked: Intent { act=android.view.InputMethod cmp=com.android.inputmethod.latin/.LatinIME } type=null callingUid=1000
+12-11 05:39:08.290   594  1877 D ActivityManager: Adding to second-top of LRU activity list: ProcessRecord{4c260b3 754:com.android.inputmethod.latin/u0a39}
+12-11 05:39:08.292   594  1877 V ActivityManager: Set 754 com.android.inputmethod.latin adj 100: service
+12-11 05:39:08.292   594  1877 V ActivityManager: Setting sched group of com.android.inputmethod.latin to 1
+12-11 05:39:08.294   594  1877 V ActivityManager: Proc state change of com.android.inputmethod.latin to 3
+12-11 05:39:08.294   594  1877 D ActivityManager: Checking proc [[com.android.inputmethod.latin]] state changes: old = 7, new = 3
+12-11 05:39:08.294   594  1877 I ActivityManager: Changes in ProcessRecord{4c260b3 754:com.android.inputmethod.latin/u0a39}: 2
+12-11 05:39:08.294   594  1877 I ActivityManager: Retrieving available item: com.android.server.am.ActivityManagerService$ProcessChangeItem@85cec10
+12-11 05:39:08.294   594  1877 I ActivityManager: *** Enqueueing dispatch processes changed!
+12-11 05:39:08.295   594  1877 I ActivityManager: Item 85cec10 754:com.android.inputmethod.latin/u0a39: changes=2 procState=3 foreground=false type=service source=ProcessRecord{e98f45e 594:system/1000} target=ComponentInfo{com.android.inputmethod.latin/com.android.inputmethod.latin.LatinIME}
+12-11 05:39:08.295   594  1877 V ActivityManager: Bind ServiceRecord{f91932f u0 com.android.inputmethod.latin/.LatinIME} with AppBindRecord{efabc1a com.android.inputmethod.latin/.LatinIME:system}: received=true apps=1 doRebind=false
+12-11 05:39:08.295   594   609 I ActivityManager: *** Delivering 1 process changes
+12-11 05:39:08.296   754   754 W InputMethodService: Window size has been changed. This may cause jankiness of resizing window: -1 -> -2
+12-11 05:39:08.302   754   754 I LatinIME: Starting input. Cursor position = -1,-1
+12-11 05:39:08.303   754   754 E RichInputConnection: Unable to connect to the editor to retrieve text.
+12-11 05:39:08.303   754   754 D RichInputConnection: Will try to retrieve text later.
+12-11 05:39:08.303   754   754 I InputAttributes: InputType.TYPE_NULL is specified
+12-11 05:39:08.330   230   239 E BufferQueueProducer: [InputMethod] connect: already connected (cur=1 req=1)
+12-11 05:39:08.331   754  1796 D mali_winsys: EGLint new_window_surface(egl_winsys_display*, void*, EGLSurface, EGLConfig, egl_winsys_surface**, egl_color_buffer_format*, EGLBoolean) returns 0x3000
+12-11 05:39:08.348   594   606 V ActivityManager: Activity idle: Token{a6ea2a4 ActivityRecord{2a4b65b u0 com.neolix.neolixcubing/.MainActivity t189}}
+12-11 05:39:08.348   594   606 D ActivityManager: activityIdleInternalLocked: Callers=com.android.server.am.ActivityManagerService.activityIdle:6882 android.app.ActivityManagerNative.onTransact:554 com.android.server.am.ActivityManagerService.onTransact:2909 android.os.Binder.execTransact:565 
+12-11 05:39:08.348   594   606 V ActivityManager: ensureActivitiesVisible behind ActivityRecord{2a4b65b u0 com.neolix.neolixcubing/.MainActivity t189} configChanges=0x0
+12-11 05:39:08.349   594   606 V ActivityManager: Make visible? ActivityRecord{2a4b65b u0 com.neolix.neolixcubing/.MainActivity t189} finishing=false state=RESUMED
+12-11 05:39:08.349   594   606 V ActivityManager: Ensuring correct configuration: ActivityRecord{2a4b65b u0 com.neolix.neolixcubing/.MainActivity t189}
+12-11 05:39:08.349   594   606 V ActivityManager: Configuration unchanged in ActivityRecord{2a4b65b u0 com.neolix.neolixcubing/.MainActivity t189}
+12-11 05:39:08.349   594   606 V ActivityManager: Skipping: already visible at ActivityRecord{2a4b65b u0 com.neolix.neolixcubing/.MainActivity t189}
+12-11 05:39:08.349   594   606 V ActivityManager: Fullscreen: at ActivityRecord{2a4b65b u0 com.neolix.neolixcubing/.MainActivity t189} stackInvisible=false behindFullscreenActivity=false
+12-11 05:39:08.349   594   606 V ActivityManager: ensureActivitiesVisible behind ActivityRecord{11d583f u0 com.android.launcher3/.Launcher t186} configChanges=0x0
+12-11 05:39:08.349   594   606 V ActivityManager: Make invisible? ActivityRecord{11d583f u0 com.android.launcher3/.Launcher t186} finishing=false state=PAUSED stackInvisible=true behindFullscreenActivity=true mLaunchTaskBehind=false
+12-11 05:39:08.349   594   606 V ActivityManager: Already invisible: ActivityRecord{11d583f u0 com.android.launcher3/.Launcher t186}
+12-11 05:39:08.349   594   606 V ActivityManager: Home task: at TaskRecord{a1bf50c #186 ?? U=0 StackId=0 sz=1} stackInvisible=true behindFullscreenActivity=true
+12-11 05:39:08.349   594   606 V ActivityManager: Stopping ActivityRecord{11d583f u0 com.android.launcher3/.Launcher t186}: nowVisible=true waitingVisible=false finishing=false
+12-11 05:39:08.349   594   606 V ActivityManager: Ready to stop: ActivityRecord{11d583f u0 com.android.launcher3/.Launcher t186}
+12-11 05:39:08.350   594   606 D ActivityManager: Stopping: ActivityRecord{11d583f u0 com.android.launcher3/.Launcher t186}
+12-11 05:39:08.350   594   606 V ActivityManager: Moving to STOPPING: ActivityRecord{11d583f u0 com.android.launcher3/.Launcher t186} (stop requested)
+12-11 05:39:08.350   594   606 V ActivityManager: Stopping visible=false for ActivityRecord{11d583f u0 com.android.launcher3/.Launcher t186}
+12-11 05:39:08.352   594   606 V ActivityManager: Setting sched group of com.android.launcher3 to 0
+12-11 05:39:08.355   594   606 D ActivityManager: Process state change from T  to HO next pss in 30000: ProcessRecord{7d9d30d 1209:com.android.launcher3/u0a40}
+12-11 05:39:08.355   594   606 V ActivityManager: Proc state change of com.android.launcher3 to 12
+12-11 05:39:08.355   594   606 D ActivityManager: Checking proc [[com.android.launcher3]] state changes: old = 2, new = 12
+12-11 05:39:08.355   594   606 I ActivityManager: Changes in ProcessRecord{7d9d30d 1209:com.android.launcher3/u0a40}: 2
+12-11 05:39:08.356   594   606 I ActivityManager: Retrieving available item: com.android.server.am.ActivityManagerService$ProcessChangeItem@85cec10
+12-11 05:39:08.356   594   606 I ActivityManager: *** Enqueueing dispatch processes changed!
+12-11 05:39:08.356   594   606 I ActivityManager: Item 85cec10 1209:com.android.launcher3/u0a40: changes=2 procState=12 foreground=true type=stopping source=null target=null
+12-11 05:39:08.356   594   606 D ActivityManager: oom: memFactor=0 last=0 allowLow=true numProcs=26 last=26
+12-11 05:39:08.356   594   606 V ActivityManager: Trimming memory of ui hidden com.android.launcher3 to 20
+12-11 05:39:08.357   594   606 I ActivityManager: Changes in UidRecord{3cb5ad1 u0a40 HO procs:1}: proc state from 2 to 12
+12-11 05:39:08.357   594   606 I ActivityManager: *** Enqueueing dispatch uid changed!
+12-11 05:39:08.357   594   606 I ActivityManager: Retrieving available item: com.android.server.am.UidRecord$ChangeItem@86fb9b6
+12-11 05:39:08.357   594   606 I ActivityManager: Changes in UidRecord{12e2d3c u0a39 SB procs:1}: proc state from 7 to 3
+12-11 05:39:08.357   594   606 I ActivityManager: Retrieving available item: com.android.server.am.UidRecord$ChangeItem@ac4f278
+12-11 05:39:08.357   594   606 D ActivityManager: Did OOM ADJ in 6ms
+12-11 05:39:08.358   594   609 I ActivityManager: *** Delivering 1 process changes
+12-11 05:39:08.358   594   609 I ActivityManager: *** Delivering 2 uid changes
+12-11 05:39:08.358   594   609 I ActivityManager: UID CHANGED uid=10040: 12
+12-11 05:39:08.358   594   609 I ActivityManager: UID CHANGED uid=10039: 3
+12-11 05:39:08.358   594   609 I ActivityManager: UID CHANGED uid=10040: 12
+12-11 05:39:08.358   594   609 I ActivityManager: UID CHANGED uid=10039: 3
+12-11 05:39:08.359   594   609 I ActivityManager: UID CHANGED uid=10040: 12
+12-11 05:39:08.359   594   609 I ActivityManager: UID CHANGED uid=10039: 3
+12-11 05:39:08.364   594   606 V ActivityManager: Activity stopped: token=Token{454d06a ActivityRecord{11d583f u0 com.android.launcher3/.Launcher t186}}
+12-11 05:39:08.364   594   606 I ActivityManager: Saving icicle of ActivityRecord{11d583f u0 com.android.launcher3/.Launcher t186}: Bundle[mParcelledData.dataSize=4636]
+12-11 05:39:08.364   594   606 V ActivityManager: Moving to STOPPED: ActivityRecord{11d583f u0 com.android.launcher3/.Launcher t186} (stop complete)
+12-11 05:39:08.365   594   606 V ActivityManager: Set 1209 com.android.launcher3 adj 600: home
+12-11 05:39:08.365   594   606 I ActivityManager: Changes in ProcessRecord{7d9d30d 1209:com.android.launcher3/u0a40}: 1
+12-11 05:39:08.365   594   606 I ActivityManager: Retrieving available item: com.android.server.am.ActivityManagerService$ProcessChangeItem@85cec10
+12-11 05:39:08.365   594   606 I ActivityManager: *** Enqueueing dispatch processes changed!
+12-11 05:39:08.366   594   606 I ActivityManager: Item 85cec10 1209:com.android.launcher3/u0a40: changes=1 procState=12 foreground=false type=home source=null target=null
+12-11 05:39:08.366   594   606 D ActivityManager: oom: memFactor=0 last=0 allowLow=true numProcs=26 last=26
+12-11 05:39:08.366   594   606 D ActivityManager: Did OOM ADJ in 1ms
+12-11 05:39:08.366   594   609 I ActivityManager: *** Delivering 1 process changes
+12-11 05:39:08.436   754   754 I LatinIME: Starting input. Cursor position = 0,0
+12-11 05:39:10.830   594   687 I ActivityManager: Saving task=TaskRecord{5d2ea36 #189 A=com.neolix.neolixcubing U=0 StackId=1 sz=1}
+12-11 05:39:11.064   322   356 D alsa_route: route_set_controls() set route 24
+12-11 05:39:11.064   322   356 D AudioHardwareTiny: close device
+12-11 05:39:25.821   594  1334 D DhcpClient: Received packet: 30:95:e3:13:2f:ae OFFER, ip /192.168.11.238, mask /255.255.240.0, DNS servers: /219.141.140.10 /219.141.136.10 , gateways [/192.168.0.1] lease time 86400, domain null
+12-11 05:39:27.254   594  1334 D DhcpClient: Received packet: 30:95:e3:13:2f:ae OFFER, ip /192.168.11.238, mask /255.255.240.0, DNS servers: /219.141.140.10 /219.141.136.10 , gateways [/192.168.0.1] lease time 86400, domain null
+12-11 05:39:28.791   594  1334 D DhcpClient: Received packet: 30:95:e3:13:2f:ae OFFER, ip /192.168.11.238, mask /255.255.240.0, DNS servers: /219.141.140.10 /219.141.136.10 , gateways [/192.168.0.1] lease time 86400, domain null
+12-11 05:39:28.997   594  1334 D DhcpClient: Received packet: 30:95:e3:13:2f:ae ACK: your new IP /192.168.11.238, netmask /255.255.240.0, gateways [/192.168.0.1] DNS servers: /219.141.140.10 /219.141.136.10 , lease time 86400
+12-11 05:40:00.000   594   629 V ActivityManager: Broadcast: Intent { act=android.intent.action.TIME_TICK flg=0x50000014 (has extras) } ordered=true userid=-1
+12-11 05:40:00.000   594   629 V ActivityManager: Enqueing broadcast: android.intent.action.TIME_TICK replacePending=false
+12-11 05:40:00.000   594   629 I ActivityManager: Broadcast intent Intent { act=android.intent.action.TIME_TICK flg=0x50000014 (has extras) } on foreground queue
+12-11 05:40:00.000   594   629 V ActivityManager: Enqueueing ordered broadcast BroadcastRecord{2c1e958 u-1 android.intent.action.TIME_TICK}: prev had 0
+12-11 05:40:00.000   594   629 I ActivityManager: Enqueueing broadcast android.intent.action.TIME_TICK
+12-11 05:40:00.000   594   629 V BroadcastQueue: Schedule broadcasts [foreground]: current=false
+12-11 05:40:00.001   594   608 V BroadcastQueue: Received BROADCAST_INTENT_MSG
+12-11 05:40:00.001   594   608 V BroadcastQueue: processNextBroadcast [foreground]: 0 broadcasts, 1 ordered broadcasts
+12-11 05:40:00.001   594   608 V BroadcastQueue: Processing ordered broadcast [foreground] BroadcastRecord{2c1e958 u-1 android.intent.action.TIME_TICK}
+12-11 05:40:00.001   594   608 V BroadcastQueue: Submitting BROADCAST_TIMEOUT_MSG [foreground] for BroadcastRecord{2c1e958 u-1 android.intent.action.TIME_TICK} at 619668
+12-11 05:40:00.001   594   608 V BroadcastQueue: Delivering ordered [foreground] to registered BroadcastFilter{72e86eb u0 ReceiverList{17f9a3a 594 system/1000/u0 local:64cbd65}}: BroadcastRecord{2c1e958 u-1 android.intent.action.TIME_TICK}
+12-11 05:40:00.002   594   608 I BroadcastQueue: Delivering to BroadcastFilter{72e86eb u0 ReceiverList{17f9a3a 594 system/1000/u0 local:64cbd65}} : BroadcastRecord{2c1e958 u-1 android.intent.action.TIME_TICK}
+12-11 05:40:00.003   594   594 V ActivityManager: Finish receiver: android.app.LoadedApk$ReceiverDispatcher$InnerReceiver@64cbd65
+12-11 05:40:00.004   594   594 V BroadcastQueue: processNextBroadcast [foreground]: 0 broadcasts, 1 ordered broadcasts
+12-11 05:40:00.004   594   594 V BroadcastQueue: Delivering ordered [foreground] to registered BroadcastFilter{66a6e45 u0 ReceiverList{d8b7ebc 693 com.android.systemui/10020/u0 remote:fb33aaf}}: BroadcastRecord{2c1e958 u-1 android.intent.action.TIME_TICK}
+12-11 05:40:00.004   594   594 I BroadcastQueue: Delivering to BroadcastFilter{66a6e45 u0 ReceiverList{d8b7ebc 693 com.android.systemui/10020/u0 remote:fb33aaf}} : BroadcastRecord{2c1e958 u-1 android.intent.action.TIME_TICK}
+12-11 05:40:00.005   594   594 D ActivityManager: Requesting PSS of: ProcessRecord{bb7b91a 1882:com.neolix.neolixcubing/1000}
+12-11 05:40:00.005   594   594 D ActivityManager: Requesting PSS of: ProcessRecord{7d9d30d 1209:com.android.launcher3/u0a40}
+12-11 05:40:00.006   594   594 D ActivityManager: oom: memFactor=0 last=0 allowLow=true numProcs=26 last=26
+12-11 05:40:00.006   594   594 D ActivityManager: Did OOM ADJ in 2ms
+12-11 05:40:00.008   594   605 V ActivityManager: Finish receiver: android.os.BinderProxy@fb33aaf
+12-11 05:40:00.009   594   605 V BroadcastQueue: processNextBroadcast [foreground]: 0 broadcasts, 1 ordered broadcasts
+12-11 05:40:00.009   594   605 V BroadcastQueue: Delivering ordered [foreground] to registered BroadcastFilter{5b4fc50 u0 ReceiverList{64ca213 693 com.android.systemui/10020/u0 remote:b360902}}: BroadcastRecord{2c1e958 u-1 android.intent.action.TIME_TICK}
+12-11 05:40:00.010   594   605 I BroadcastQueue: Delivering to BroadcastFilter{5b4fc50 u0 ReceiverList{64ca213 693 com.android.systemui/10020/u0 remote:b360902}} : BroadcastRecord{2c1e958 u-1 android.intent.action.TIME_TICK}
+12-11 05:40:00.018   594   605 D ActivityManager: oom: memFactor=0 last=0 allowLow=true numProcs=26 last=26
+12-11 05:40:00.019   594   605 D ActivityManager: Did OOM ADJ in 1ms
+12-11 05:40:00.025   594   605 V ActivityManager: Finish receiver: android.os.BinderProxy@b360902
+12-11 05:40:00.025   594   605 V BroadcastQueue: processNextBroadcast [foreground]: 0 broadcasts, 1 ordered broadcasts
+12-11 05:40:00.025   594   605 V BroadcastQueue: Delivering ordered [foreground] to registered BroadcastFilter{1712ab4 u-1 ReceiverList{464bb87 693 com.android.systemui/10020/u-1 remote:6e98fc6}}: BroadcastRecord{2c1e958 u-1 android.intent.action.TIME_TICK}
+12-11 05:40:00.026   594   605 I BroadcastQueue: Delivering to BroadcastFilter{1712ab4 u-1 ReceiverList{464bb87 693 com.android.systemui/10020/u-1 remote:6e98fc6}} : BroadcastRecord{2c1e958 u-1 android.intent.action.TIME_TICK}
+12-11 05:40:00.027   594   605 D ActivityManager: oom: memFactor=0 last=0 allowLow=true numProcs=26 last=26
+12-11 05:40:00.028   594   605 D ActivityManager: Did OOM ADJ in 1ms
+12-11 05:40:00.034   594   606 V ActivityManager: Finish receiver: android.os.BinderProxy@6e98fc6
+12-11 05:40:00.034   594   606 V BroadcastQueue: processNextBroadcast [foreground]: 0 broadcasts, 1 ordered broadcasts
+12-11 05:40:00.034   594   606 V BroadcastQueue: Delivering ordered [foreground] to registered BroadcastFilter{8807b35 u0 ReceiverList{78ee96c 693 com.android.systemui/10020/u0 remote:f2be21f}}: BroadcastRecord{2c1e958 u-1 android.intent.action.TIME_TICK}
+12-11 05:40:00.034   594   606 I BroadcastQueue: Delivering to BroadcastFilter{8807b35 u0 ReceiverList{78ee96c 693 com.android.systemui/10020/u0 remote:f2be21f}} : BroadcastRecord{2c1e958 u-1 android.intent.action.TIME_TICK}
+12-11 05:40:00.036   594   606 D ActivityManager: oom: memFactor=0 last=0 allowLow=true numProcs=26 last=26
+12-11 05:40:00.036   594   606 D ActivityManager: Did OOM ADJ in 1ms
+12-11 05:40:00.054   594   605 V ActivityManager: Finish receiver: android.os.BinderProxy@f2be21f
+12-11 05:40:00.055   594   605 V BroadcastQueue: processNextBroadcast [foreground]: 0 broadcasts, 1 ordered broadcasts
+12-11 05:40:00.055   594   605 V BroadcastQueue: Delivering ordered [foreground] to registered BroadcastFilter{795fad2 u0 ReceiverList{5a4615d 693 com.android.systemui/10020/u0 remote:de76f34}}: BroadcastRecord{2c1e958 u-1 android.intent.action.TIME_TICK}
+12-11 05:40:00.055   594   605 I BroadcastQueue: Delivering to BroadcastFilter{795fad2 u0 ReceiverList{5a4615d 693 com.android.systemui/10020/u0 remote:de76f34}} : BroadcastRecord{2c1e958 u-1 android.intent.action.TIME_TICK}
+12-11 05:40:00.060   594   607 D ActivityManager: PSS of 1882:com.neolix.neolixcubing/1000: 43335 lastPss=0 state=T 
+12-11 05:40:00.061   594   607 D ActivityManager: Collected PSS of 1 processes in 55ms
+12-11 05:40:00.062   594   605 D ActivityManager: oom: memFactor=0 last=0 allowLow=true numProcs=26 last=26
+12-11 05:40:00.062   594   605 D ActivityManager: Did OOM ADJ in 1ms
+12-11 05:40:00.063   594   605 V ActivityManager: Finish receiver: android.os.BinderProxy@de76f34
+12-11 05:40:00.064   594   605 V BroadcastQueue: processNextBroadcast [foreground]: 0 broadcasts, 1 ordered broadcasts
+12-11 05:40:00.064   594   605 I BroadcastQueue: Finishing broadcast [foreground] android.intent.action.TIME_TICK app=null
+12-11 05:40:00.064   594   605 V BroadcastQueue: Cancelling BROADCAST_TIMEOUT_MSG
+12-11 05:40:00.065   594   605 V BroadcastQueue: Finished with ordered broadcast BroadcastRecord{2c1e958 u-1 android.intent.action.TIME_TICK}
+12-11 05:40:00.067   594   605 D ActivityManager: oom: memFactor=0 last=0 allowLow=true numProcs=26 last=26
+12-11 05:40:00.068   594   605 D ActivityManager: Did OOM ADJ in 3ms
+12-11 05:40:00.071   594   605 D ActivityManager: oom: memFactor=0 last=0 allowLow=true numProcs=26 last=26
+12-11 05:40:00.071   594   605 D ActivityManager: Did OOM ADJ in 0ms
+12-11 05:40:08.360   594   608 I ActivityManager: *** Enqueueing dispatch uid changed!
+12-11 05:40:08.360   594   608 I ActivityManager: Retrieving available item: com.android.server.am.UidRecord$ChangeItem@ac4f278
+12-11 05:40:08.360   594   609 I ActivityManager: *** Delivering 1 uid changes
+12-11 05:40:08.361   594   609 I ActivityManager: UID idle uid=10040
+12-11 05:40:08.361   594   609 I ActivityManager: UID CHANGED uid=10040: 12
+12-11 05:40:08.361   594   609 I ActivityManager: UID CHANGED uid=10040: 12
+12-11 05:40:08.361   594   609 I ActivityManager: UID idle uid=10040
+12-11 05:40:08.361   594   609 I ActivityManager: UID CHANGED uid=10040: 12
+12-11 05:40:12.540   594   608 I ActivityManager: Wake for 1209:com.android.launcher3/u0a40: over +2m0s31ms used 0 (0%)
+12-11 05:40:12.540   594   608 I ActivityManager: CPU for 1209:com.android.launcher3/u0a40: over +2m0s31ms used 0 (0%)
+12-11 05:40:12.540   594   608 I ActivityManager: Wake for 1533:com.android.defcontainer/u0a5: over +2m0s31ms used 0 (0%)
+12-11 05:40:12.540   594   608 I ActivityManager: CPU for 1533:com.android.defcontainer/u0a5: over +2m0s31ms used 0 (0%)
+12-11 05:40:12.540   594   608 I ActivityManager: Wake for 1745:com.svox.pico/u0a46: over +2m0s31ms used 0 (0%)
+12-11 05:40:12.540   594   608 I ActivityManager: CPU for 1745:com.svox.pico/u0a46: over +2m0s31ms used 0 (0%)
+12-11 05:40:12.540   594   608 I ActivityManager: Wake for 1638:android.process.acore/u0a1: over +2m0s31ms used 0 (0%)
+12-11 05:40:12.540   594   608 I ActivityManager: CPU for 1638:android.process.acore/u0a1: over +2m0s31ms used 0 (0%)
+12-11 05:40:12.540   594   608 I ActivityManager: Wake for 1620:com.android.musicfx/u0a11: over +2m0s31ms used 0 (0%)
+12-11 05:40:12.540   594   608 I ActivityManager: CPU for 1620:com.android.musicfx/u0a11: over +2m0s31ms used 0 (0%)
+12-11 05:40:12.540   594   608 I ActivityManager: Wake for 1601:com.android.gallery3d/u0a37: over +2m0s31ms used 0 (0%)
+12-11 05:40:12.540   594   608 I ActivityManager: CPU for 1601:com.android.gallery3d/u0a37: over +2m0s31ms used 0 (0%)
+12-11 05:40:12.541   594   608 I ActivityManager: Wake for 1150:com.android.printspooler/u0a48: over +2m0s31ms used 0 (0%)
+12-11 05:40:12.541   594   608 I ActivityManager: CPU for 1150:com.android.printspooler/u0a48: over +2m0s31ms used 0 (0%)
+12-11 05:40:12.541   594   608 I ActivityManager: Wake for 1696:com.android.mtp/u0a7: over +2m0s31ms used 0 (0%)
+12-11 05:40:12.541   594   608 I ActivityManager: CPU for 1696:com.android.mtp/u0a7: over +2m0s31ms used 0 (0%)
+12-11 05:40:12.541   594   608 I ActivityManager: Wake for 1677:com.android.externalstorage/u0a9: over +2m0s31ms used 0 (0%)
+12-11 05:40:12.541   594   608 I ActivityManager: CPU for 1677:com.android.externalstorage/u0a9: over +2m0s31ms used 0 (0%)
+12-11 05:40:12.541   594   608 I ActivityManager: Wake for 1243:android.process.media/u0a7: over +2m0s31ms used 0 (0%)
+12-11 05:40:12.541   594   608 I ActivityManager: CPU for 1243:android.process.media/u0a7: over +2m0s31ms used 0 (0%)
+12-11 05:40:12.541   594   608 I ActivityManager: Wake for 1660:com.android.documentsui/u0a6: over +2m0s31ms used 0 (0%)
+12-11 05:40:12.541   594   608 I ActivityManager: CPU for 1660:com.android.documentsui/u0a6: over +2m0s31ms used 0 (0%)
+12-11 05:40:12.541   594   608 I ActivityManager: Wake for 1226:com.android.keychain/1000: over +2m0s31ms used 0 (0%)
+12-11 05:40:12.541   594   608 I ActivityManager: CPU for 1226:com.android.keychain/1000: over +2m0s31ms used 0 (0%)
+12-11 05:40:12.541   594   608 I ActivityManager: Wake for 1567:com.android.packageinstaller/u0a13: over +2m0s31ms used 0 (0%)
+12-11 05:40:12.541   594   608 I ActivityManager: CPU for 1567:com.android.packageinstaller/u0a13: over +2m0s31ms used 0 (0%)
+12-11 05:40:12.541   594   608 I ActivityManager: Wake for 1381:com.android.providers.calendar/u0a2: over +2m0s31ms used 0 (0%)
+12-11 05:40:12.541   594   608 I ActivityManager: CPU for 1381:com.android.providers.calendar/u0a2: over +2m0s31ms used 0 (0%)
+12-11 05:40:12.541   594   608 I ActivityManager: Wake for 1105:com.android.deskclock/u0a32: over +2m0s31ms used 0 (0%)
+12-11 05:40:12.541   594   608 I ActivityManager: CPU for 1105:com.android.deskclock/u0a32: over +2m0s31ms used 0 (0%)
+12-11 05:40:12.541   594   608 I ActivityManager: Wake for 1342:com.android.calendar/u0a27: over +2m0s31ms used 0 (0%)
+12-11 05:40:12.541   594   608 I ActivityManager: CPU for 1342:com.android.calendar/u0a27: over +2m0s31ms used 0 (0%)
+12-11 05:40:12.541   594   608 I ActivityManager: Wake for 1367:com.android.email/u0a34: over +2m0s31ms used 0 (0%)
+12-11 05:40:12.541   594   608 I ActivityManager: CPU for 1367:com.android.email/u0a34: over +2m0s31ms used 0 (0%)
+12-11 05:40:46.845  1882  1882 D zhangwei: start capture
+12-11 05:40:46.846  1882  1882 I neolix_cubing_jni11: Java_com_neolix_neolixcubing_NeolixCubing_connectCamera
+12-11 05:40:46.846  1882  1882 I mars04_wrapper_native: ------------------------------------------------
+12-11 05:40:46.846  1882  1882 I mars04_wrapper_native: ---------SampleCode  Version  V2.0.1------------
+12-11 05:40:46.846  1882  1882 I mars04_wrapper_native: ------------------------------------------------
+12-11 05:40:46.848   322   322 I AudioOut_D: type=1400 audit(0.0:24): avc: denied { read } for name="audioformat" dev="sysfs" ino=19203 scontext=u:r:audioserver:s0 tcontext=u:object_r:sysfs:s0 tclass=file permissive=1
+12-11 05:40:46.848   322   322 I AudioOut_D: type=1400 audit(0.0:25): avc: denied { open } for path="/sys/devices/platform/display-subsystem/drm/card0/card0-HDMI-A-1/audioformat" dev="sysfs" ino=19203 scontext=u:r:audioserver:s0 tcontext=u:object_r:sysfs:s0 tclass=file permissive=1
+12-11 05:40:46.848   322   322 I AudioOut_D: type=1400 audit(0.0:26): avc: denied { getattr } for path="/sys/devices/platform/display-subsystem/drm/card0/card0-HDMI-A-1/audioformat" dev="sysfs" ino=19203 scontext=u:r:audioserver:s0 tcontext=u:object_r:sysfs:s0 tclass=file permissive=1
+12-11 05:40:46.849   322   356 D AudioHardwareTiny: out_set_parameters: kvpairs = routing=2
+--------- beginning of crash
+12-11 05:40:46.850  1882  1882 F libc    : Fatal signal 11 (SIGSEGV), code 1, fault addr 0x40 in tid 1882 (ix.neolixcubing)
+12-11 05:40:46.851   213   213 W         : debuggerd: handling request: pid=1882 uid=1000 gid=1000 tid=1882
+12-11 05:40:46.851   322   356 D AudioHardwareTiny: start_output_stream
+12-11 05:40:46.852   322   356 D alsa_route: route_info->sound_card 0, route_info->devices 0  
+12-11 05:40:46.853   322   356 D alsa_route: route_set_controls() set route 0
+12-11 05:40:46.925  1916  1916 F DEBUG   : *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***
+12-11 05:40:46.925  1916  1916 F DEBUG   : Build fingerprint: 'Android/rk3399_mid/rk3399_mid:7.1.2/NHG47K/wlq06201030:userdebug/test-keys'
+12-11 05:40:46.925  1916  1916 F DEBUG   : Revision: '0'
+12-11 05:40:46.925  1916  1916 F DEBUG   : ABI: 'arm64'
+12-11 05:40:46.925  1916  1916 F DEBUG   : pid: 1882, tid: 1882, name: ix.neolixcubing  >>> com.neolix.neolixcubing <<<
+12-11 05:40:46.925  1916  1916 F DEBUG   : signal 11 (SIGSEGV), code 1 (SEGV_MAPERR), fault addr 0x40
+12-11 05:40:46.925  1916  1916 F DEBUG   :     x0   0000000000000000  x1   0000007fd8e1f658  x2   0000007fd8e1f648  x3   000000000000000a
+12-11 05:40:46.925  1916  1916 F DEBUG   :     x4   0000000000000058  x5   0000000000000001  x6   0000007ac3b12682  x7   7420676e69686374
+12-11 05:40:46.925  1916  1916 F DEBUG   :     x8   0000007fd8e1f868  x9   0000000000000001  x10  0000000000000200  x11  0000007fd8e1f868
+12-11 05:40:46.925  1916  1916 F DEBUG   :     x12  0000007fd8e1f668  x13  000000000ccccccc  x14  000000008000002f  x15  0000007ac547f268
+12-11 05:40:46.925  1916  1916 F DEBUG   :     x16  0000007aba86ad48  x17  0000007aba8d7ca0  x18  0000000000000000  x19  0000007fd8e1f648
+12-11 05:40:46.925  1916  1916 F DEBUG   :     x20  0000007ab7ab2e00  x21  0000007fd8e1f658  x22  0000007aba8ad038  x23  0000000000010050
+12-11 05:40:46.925  1916  1916 F DEBUG   :     x24  0000000000000000  x25  2ac259ad1cc5ba22  x26  0000007ac3a95a98  x27  2ac259ad1cc5ba22
+12-11 05:40:46.925  1916  1916 F DEBUG   :     x28  0000000000000000  x29  0000007fd8e1f630  x30  0000007aba832c98
+12-11 05:40:46.925  1916  1916 F DEBUG   :     sp   0000007fd8e1f600  pc   0000007aba8d7ca0  pstate 0000000020000000
+12-11 05:40:46.929  1916  1916 F DEBUG   : 
+12-11 05:40:46.929  1916  1916 F DEBUG   : backtrace:
+12-11 05:40:46.929  1916  1916 F DEBUG   :     #00 pc 0000000000005ca0  /data/app/com.neolix.neolixcubing-1/lib/arm64/libusb1.0.so (libusb_get_device)
+12-11 05:40:46.929  1916  1916 F DEBUG   :     #01 pc 0000000000008c94  /data/app/com.neolix.neolixcubing-1/lib/arm64/libTof.so (_ZN7CLibTof19LibTOF_DepthCommandEP13tag_CmdBufferS1_+56)
+12-11 05:40:46.929  1916  1916 F DEBUG   :     #02 pc 0000000000008e60  /data/app/com.neolix.neolixcubing-1/lib/arm64/libTof.so (_ZN7CLibTof20LibTOF_GetDeviceInfoEP14tag_DeviceInfo+108)
+12-11 05:40:46.929  1916  1916 F DEBUG   :     #03 pc 0000000000005e94  /data/app/com.neolix.neolixcubing-1/lib/arm64/libmars04_sdk_wrapper.so (_ZN5sunny13ConnectMars04ER14tag_DeviceInfo+216)
+12-11 05:40:46.929  1916  1916 F DEBUG   :     #04 pc 0000000000000938  /data/app/com.neolix.neolixcubing-1/lib/arm64/libNeolixCubing.so (Java_com_neolix_neolixcubing_NeolixCubing_connectCamera+60)
+12-11 05:40:46.929  1916  1916 F DEBUG   :     #05 pc 0000000000342bcc  /data/app/com.neolix.neolixcubing-1/oat/arm64/base.odex (offset 0x31d000)
+12-11 05:40:47.395   594  1921 W ActivityManager:   Force finishing activity com.neolix.neolixcubing/.MainActivity
+12-11 05:40:47.396   594  1921 D ActivityManager: moveHomeStackTaskToTop: moving TaskRecord{a1bf50c #186 ?? U=0 StackId=0 sz=1}
+12-11 05:40:47.399   594   612 I BootReceiver: Copying /data/tombstones/tombstone_02 to DropBox (SYSTEM_TOMBSTONE)
+12-11 05:40:47.401   213   213 W         : debuggerd: resuming target 1882
+12-11 05:40:47.402   594  1921 V ActivityManager: No result destination from ActivityRecord{2a4b65b u0 com.neolix.neolixcubing/.MainActivity t189 f}
+12-11 05:40:47.402   594  1921 V ActivityManager: Prepare close transition: finishing ActivityRecord{2a4b65b u0 com.neolix.neolixcubing/.MainActivity t189 f}
+12-11 05:40:47.404   594  1921 V ActivityManager: Finish needs to pause: ActivityRecord{2a4b65b u0 com.neolix.neolixcubing/.MainActivity t189 f}
+12-11 05:40:47.404   594  1921 V ActivityManager: finish() => pause with userLeaving=false
+12-11 05:40:47.404   594  1921 V ActivityManager: Moving to PAUSING: ActivityRecord{2a4b65b u0 com.neolix.neolixcubing/.MainActivity t189 f}
+12-11 05:40:47.404   594  1921 V ActivityManager: Enqueueing pending pause: ActivityRecord{2a4b65b u0 com.neolix.neolixcubing/.MainActivity t189 f}
+12-11 05:40:47.404   594  1921 D ActivityManager: updateUsageStats: comp=ActivityRecord{2a4b65b u0 com.neolix.neolixcubing/.MainActivity t189 f}res=false
+12-11 05:40:47.405   594  1921 V ActivityManager: Waiting for pause to complete...
+12-11 05:40:47.409   594   594 V ActivityManager: Broadcast: Intent { act=android.intent.action.DROPBOX_ENTRY_ADDED flg=0x10 (has extras) } ordered=false userid=0
+12-11 05:40:47.409   594   594 V ActivityManager: Enqueing broadcast: android.intent.action.DROPBOX_ENTRY_ADDED replacePending=false
+12-11 05:40:47.445   594   604 I art     : Background sticky concurrent mark sweep GC freed 29167(1260KB) AllocSpace objects, 3(412KB) LOS objects, 5% free, 10MB/11MB, paused 5.529ms total 41.375ms
+12-11 05:40:47.447   594   609 V ActivityManager: Register receiver android.content.IntentFilter@8b4fe0f: null
+12-11 05:40:47.454   594   594 V ActivityManager: Broadcast: Intent { act=android.intent.action.DROPBOX_ENTRY_ADDED flg=0x10 (has extras) } ordered=false userid=0
+12-11 05:40:47.454   594   594 V ActivityManager: Enqueing broadcast: android.intent.action.DROPBOX_ENTRY_ADDED replacePending=false
+12-11 05:40:47.473   594  1834 I OpenGLRenderer: Initialized EGL, version 1.4
+12-11 05:40:47.473   594  1834 D OpenGLRenderer: Swap behavior 1
+12-11 05:40:47.491   230   307 E BufferQueueProducer: [Application Error: com.neolix.neolixcubing] connect: already connected (cur=1 req=1)
+12-11 05:40:47.492   594  1834 D mali_winsys: EGLint new_window_surface(egl_winsys_display*, void*, EGLSurface, EGLConfig, egl_winsys_surface**, egl_color_buffer_format*, EGLBoolean) returns 0x3000
+12-11 05:40:47.517   594   645 W InputDispatcher: channel 'b7c5172 com.neolix.neolixcubing/com.neolix.neolixcubing.MainActivity (server)' ~ Consumer closed input channel or an error occurred.  events=0x9
+12-11 05:40:47.517   594   645 E InputDispatcher: channel 'b7c5172 com.neolix.neolixcubing/com.neolix.neolixcubing.MainActivity (server)' ~ Channel is unrecoverably broken and will be disposed!
+12-11 05:40:47.572   594   606 V ActivityManager: Death received in com.android.server.am.ActivityManagerService$AppDeathRecipient@bbbec4b for thread android.os.BinderProxy@e04a628
+12-11 05:40:47.572   594   992 D GraphicsStats: Buffer count: 5
+12-11 05:40:47.572   594   606 I ActivityManager: Process com.neolix.neolixcubing (pid 1882) has died
+12-11 05:40:47.572   594   606 V ActivityManager: Dying app: ProcessRecord{bb7b91a 1882:com.neolix.neolixcubing/1000}, pid: 1882, thread: android.os.BinderProxy@e04a628
+12-11 05:40:47.572   594   606 D ActivityManager: cleanUpApplicationRecord -- 1882
+12-11 05:40:47.573   594   606 V ActivityManager: Removing non-persistent process during cleanup: ProcessRecord{bb7b91a 1882:com.neolix.neolixcubing/1000}
+12-11 05:40:47.573   594   606 V ActivityManager: Removing app ProcessRecord{bb7b91a 0:com.neolix.neolixcubing/1000} from list mLRUActivities with 1 entries
+12-11 05:40:47.573   594   606 V ActivityManager: Record #0 ActivityRecord{11d583f u0 com.android.launcher3/.Launcher t186}
+12-11 05:40:47.573   594   606 V ActivityManager: Removing app ProcessRecord{bb7b91a 0:com.neolix.neolixcubing/1000} from list mStoppingActivities with 0 entries
+12-11 05:40:47.573   594   606 V ActivityManager: Removing app ProcessRecord{bb7b91a 0:com.neolix.neolixcubing/1000} from list mGoingToSleepActivities with 0 entries
+12-11 05:40:47.573   594   606 V ActivityManager: Removing app ProcessRecord{bb7b91a 0:com.neolix.neolixcubing/1000} from list mWaitingVisibleActivities with 0 entries
+12-11 05:40:47.573   594   606 V ActivityManager: Removing app ProcessRecord{bb7b91a 0:com.neolix.neolixcubing/1000} from list mFinishingActivities with 0 entries
+12-11 05:40:47.573   594   606 V ActivityManager: Removing app ProcessRecord{bb7b91a 0:com.neolix.neolixcubing/1000} from history with 1 entries
+12-11 05:40:47.573   594   606 V ActivityManager: Record #0 ActivityRecord{11d583f u0 com.android.launcher3/.Launcher t186}: app=ProcessRecord{7d9d30d 1209:com.android.launcher3/u0a40}
+12-11 05:40:47.573   594   606 V ActivityManager: App died while pausing: ActivityRecord{2a4b65b u0 com.neolix.neolixcubing/.MainActivity t189 f}
+12-11 05:40:47.573   594   606 V ActivityManager: Removing app ProcessRecord{bb7b91a 0:com.neolix.neolixcubing/1000} from list mLRUActivities with 1 entries
+12-11 05:40:47.573   594   606 V ActivityManager: Record #0 ActivityRecord{2a4b65b u0 com.neolix.neolixcubing/.MainActivity t189 f}
+12-11 05:40:47.574   594   606 V ActivityManager: ---> REMOVING this entry!
+12-11 05:40:47.574   594   606 D ActivityManager: removeTimeoutsForActivity: Callers=com.android.server.am.ActivityStack.removeTimeoutsForActivityLocked:3890 com.android.server.am.ActivityStack.removeHistoryRecordsForAppLocked:4231 com.android.server.am.ActivityStack.removeHistoryRecordsForAppLocked:4237 com.android.server.am.ActivityStack.handleAppDiedLocked:5058 
+12-11 05:40:47.574   594   606 V ActivityManager: Removing app ProcessRecord{bb7b91a 0:com.neolix.neolixcubing/1000} from list mStoppingActivities with 0 entries
+12-11 05:40:47.574   594   606 V ActivityManager: Removing app ProcessRecord{bb7b91a 0:com.neolix.neolixcubing/1000} from list mGoingToSleepActivities with 0 entries
+12-11 05:40:47.574   594   606 V ActivityManager: Removing app ProcessRecord{bb7b91a 0:com.neolix.neolixcubing/1000} from list mWaitingVisibleActivities with 0 entries
+12-11 05:40:47.574   594   606 V ActivityManager: Removing app ProcessRecord{bb7b91a 0:com.neolix.neolixcubing/1000} from list mFinishingActivities with 0 entries
+12-11 05:40:47.575   594   606 V ActivityManager: Removing app ProcessRecord{bb7b91a 0:com.neolix.neolixcubing/1000} from history with 1 entries
+12-11 05:40:47.575   594   606 V ActivityManager: Record #0 ActivityRecord{2a4b65b u0 com.neolix.neolixcubing/.MainActivity t189 f}: app=ProcessRecord{bb7b91a 0:com.neolix.neolixcubing/1000}
+12-11 05:40:47.576   594   606 I ActivityManager: Removing activity ActivityRecord{2a4b65b u0 com.neolix.neolixcubing/.MainActivity t189 f} from stack at 0: haveState=false stateNotNeeded=false finishing=true state=PAUSING callers=com.android.server.am.ActivityStack.handleAppDiedLocked:5058 com.android.server.am.ActivityStackSupervisor.handleAppDiedLocked:1740 com.android.server.am.ActivityManagerService.handleAppDiedLocked:5264 com.android.server.am.ActivityManagerService.appDiedLocked:5418 com.android.server.am.ActivityManagerService$AppDeathRecipient.binderDied:1505 
+12-11 05:40:47.576   594   606 V ActivityManager: Moving to DESTROYED: ActivityRecord{2a4b65b u0 com.neolix.neolixcubing/.MainActivity t189 f} (cleaning up)
+12-11 05:40:47.576   594   606 V ActivityManager: Clearing app during cleanUp for activity ActivityRecord{2a4b65b u0 com.neolix.neolixcubing/.MainActivity t189 f}
+12-11 05:40:47.576   320   320 I Zygote  : Process 1882 exited due to signal (11)
+12-11 05:40:47.576   594  1719 I WindowManager: WIN DEATH: Window{b7c5172 u0 com.neolix.neolixcubing/com.neolix.neolixcubing.MainActivity}
+12-11 05:40:47.576   594  1719 W InputDispatcher: Attempted to unregister already unregistered input channel 'b7c5172 com.neolix.neolixcubing/com.neolix.neolixcubing.MainActivity (server)'
+12-11 05:40:47.577   594   606 D ActivityManager: removeTimeoutsForActivity: Callers=com.android.server.am.ActivityStack.removeTimeoutsForActivityLocked:3890 com.android.server.am.ActivityStack.cleanUpActivityLocked:3879 com.android.server.am.ActivityStack.removeHistoryRecordsForAppLocked:4316 com.android.server.am.ActivityStack.handleAppDiedLocked:5058 
+12-11 05:40:47.642   594   606 V ActivityManager: No result destination from ActivityRecord{2a4b65b u0 com.neolix.neolixcubing/.MainActivity t189 f}
+12-11 05:40:47.642   594   606 I ActivityManager: Removing activity ActivityRecord{2a4b65b u0 com.neolix.neolixcubing/.MainActivity t189 f} from stack callers=com.android.server.am.ActivityStack.removeHistoryRecordsForAppLocked:4318 com.android.server.am.ActivityStack.handleAppDiedLocked:5058 com.android.server.am.ActivityStackSupervisor.handleAppDiedLocked:1740 com.android.server.am.ActivityManagerService.handleAppDiedLocked:5264 com.android.server.am.ActivityManagerService.appDiedLocked:5418 
+12-11 05:40:47.642   594   606 D ActivityManager: removeTimeoutsForActivity: Callers=com.android.server.am.ActivityStack.removeTimeoutsForActivityLocked:3890 com.android.server.am.ActivityStack.removeActivityFromHistoryLocked:3906 com.android.server.am.ActivityStack.removeHistoryRecordsForAppLocked:4318 com.android.server.am.ActivityStack.handleAppDiedLocked:5058 
+12-11 05:40:47.643   594   606 V ActivityManager: Moving to DESTROYED: ActivityRecord{2a4b65b u0 com.neolix.neolixcubing/.MainActivity t189 f} (removed from history)
+12-11 05:40:47.643   594   606 V ActivityManager: Clearing app during remove for activity ActivityRecord{2a4b65b u0 com.neolix.neolixcubing/.MainActivity t189 f}
+12-11 05:40:47.643   594   606 I ActivityManager: removeActivityFromHistoryLocked: last activity removed from ActivityStack{ab39fd1 stackId=1, 1 tasks}
+12-11 05:40:47.643   594   606 I ActivityManager: removeTask: removing stack=ActivityStack{ab39fd1 stackId=1, 0 tasks}
+12-11 05:40:47.644   594   606 D ActivityManager: detachLocked: ActivtyContainer{1}A from display=ActivityDisplay={0 numStacks=2} Callers=com.android.server.am.ActivityStackSupervisor$ActivityContainer.onTaskListEmptyLocked:4224 com.android.server.am.ActivityStack.removeTask:5225 
+12-11 05:40:47.644   594   606 V ActivityManager: detachActivitiesLocked: detaching ActivityStack{ab39fd1 stackId=1, 0 tasks} from displayId=0
+12-11 05:40:47.644   594   606 D ActivityManager: deleteActivityContainer: callers=com.android.server.am.ActivityStackSupervisor$ActivityContainer.onTaskListEmptyLocked:4225 com.android.server.am.ActivityStack.removeTask:5225 com.android.server.am.ActivityStack.removeTask:5153 com.android.server.am.ActivityStack.removeActivityFromHistoryLocked:3925 
+12-11 05:40:47.645   594   606 D ActivityManager: com.android.server.am.ActivityStack.resumeTopActivityInnerLocked:2201 com.android.server.am.ActivityStack.resumeTopActivityUncheckedLocked:2160 : mLockScreenShown=LOCK_SCREEN_HIDDEN mWakefulness=Awake mSleeping=false
+12-11 05:40:47.645   594   606 V ActivityManager: Resuming ActivityRecord{11d583f u0 com.android.launcher3/.Launcher t186}
+12-11 05:40:47.645   594   606 V ActivityManager: Prepare open transition: no previous
+12-11 05:40:47.645   594   606 V ActivityManager: Resume running: ActivityRecord{11d583f u0 com.android.launcher3/.Launcher t186} stopped=true visible=false
+12-11 05:40:47.645   594   606 V ActivityManager: Moving to RESUMED: ActivityRecord{11d583f u0 com.android.launcher3/.Launcher t186} (in existing)
+12-11 05:40:47.645   594   606 D ActivityManager: addRecent: moving to top TaskRecord{a1bf50c #186 ?? U=0 StackId=0 sz=1} from 1
+12-11 05:40:47.646   594   606 D ActivityManager: Adding to top of LRU activity list: ProcessRecord{7d9d30d 1209:com.android.launcher3/u0a40}
+12-11 05:40:47.646   594   606 V ActivityManager: Set 1209 com.android.launcher3 adj 0: top-activity
+12-11 05:40:47.646   594   606 V ActivityManager: Setting sched group of com.android.launcher3 to 2
+12-11 05:40:47.649   594   606 D ActivityManager: Process state change from HO to T  next pss in 10000: ProcessRecord{7d9d30d 1209:com.android.launcher3/u0a40}
+12-11 05:40:47.649   594   606 V ActivityManager: Proc state change of com.android.launcher3 to 2
+12-11 05:40:47.650   594   606 D ActivityManager: Checking proc [[com.android.launcher3]] state changes: old = 12, new = 2
+12-11 05:40:47.650   594   606 I ActivityManager: Changes in ProcessRecord{7d9d30d 1209:com.android.launcher3/u0a40}: 3
+12-11 05:40:47.650   594   606 I ActivityManager: Retrieving available item: com.android.server.am.ActivityManagerService$ProcessChangeItem@85cec10
+12-11 05:40:47.650   594   606 I ActivityManager: *** Enqueueing dispatch processes changed!
+12-11 05:40:47.650   594   606 I ActivityManager: Item 85cec10 1209:com.android.launcher3/u0a40: changes=3 procState=2 foreground=true type=top-activity source=null target=null
+12-11 05:40:47.650   594   606 D ActivityManager: oom: memFactor=0 last=0 allowLow=true numProcs=25 last=26
+12-11 05:40:47.651   594   606 I ActivityManager: Changes in UidRecord{3cb5ad1 u0a40 T  bg:+1m39s299ms idle procs:1}: proc state from 12 to 2
+12-11 05:40:47.651   594   606 I ActivityManager: *** Enqueueing dispatch uid changed!
+12-11 05:40:47.651   594   606 I ActivityManager: Retrieving available item: com.android.server.am.UidRecord$ChangeItem@ac4f278
+12-11 05:40:47.651   594   606 D ActivityManager: Did OOM ADJ in 5ms
+12-11 05:40:47.651   594   606 V ActivityManager: Ensuring correct configuration: ActivityRecord{11d583f u0 com.android.launcher3/.Launcher t186}
+12-11 05:40:47.651   594   606 V ActivityManager: Configuration unchanged in ActivityRecord{11d583f u0 com.android.launcher3/.Launcher t186}
+12-11 05:40:47.651   594   606 V ActivityManager: ensureActivitiesVisible behind ActivityRecord{11d583f u0 com.android.launcher3/.Launcher t186} configChanges=0x0
+12-11 05:40:47.651   594   606 V ActivityManager: Make visible? ActivityRecord{11d583f u0 com.android.launcher3/.Launcher t186} finishing=false state=RESUMED
+12-11 05:40:47.651   594   606 D ActivityManager: Not making visible, r=ActivityRecord{11d583f u0 com.android.launcher3/.Launcher t186} state=RESUMED starting=ActivityRecord{11d583f u0 com.android.launcher3/.Launcher t186}
+12-11 05:40:47.652   594   606 V ActivityManager: Fullscreen: at ActivityRecord{11d583f u0 com.android.launcher3/.Launcher t186} stackInvisible=false behindFullscreenActivity=false
+12-11 05:40:47.652   594   606 V ActivityManager: Home task: at TaskRecord{a1bf50c #186 ?? U=0 StackId=0 sz=1} stackInvisible=false behindFullscreenActivity=true
+12-11 05:40:47.655   594   606 D ActivityManager: resumeTopActivityLocked: Resumed ActivityRecord{11d583f u0 com.android.launcher3/.Launcher t186}
+12-11 05:40:47.655   594   606 D ActivityManager: scheduleIdleTimeoutLocked: Callers=com.android.server.am.ActivityStack.completeResumeLocked:1460 com.android.server.am.ActivityStack.resumeTopActivityInnerLocked:2625 com.android.server.am.ActivityStack.resumeTopActivityUncheckedLocked:2160 com.android.server.am.ActivityStackSupervisor.resumeFocusedStackTopActivityLocked:1833 
+12-11 05:40:47.655   594   606 D ActivityManager: updateUsageStats: comp=ActivityRecord{11d583f u0 com.android.launcher3/.Launcher t186}res=true
+12-11 05:40:47.656   594   606 D ActivityManager: allResumedActivitiesComplete: mLastFocusedStack changing from=ActivityStack{ab39fd1 stackId=1, 0 tasks} to=ActivityStack{672809b stackId=0, 1 tasks}
+12-11 05:40:47.656   594   606 V ActivityManager: ensureActivitiesVisible behind ActivityRecord{11d583f u0 com.android.launcher3/.Launcher t186} configChanges=0x0
+12-11 05:40:47.656   594   606 V ActivityManager: Make visible? ActivityRecord{11d583f u0 com.android.launcher3/.Launcher t186} finishing=false state=RESUMED
+12-11 05:40:47.656   594   606 V ActivityManager: Ensuring correct configuration: ActivityRecord{11d583f u0 com.android.launcher3/.Launcher t186}
+12-11 05:40:47.656   594   606 V ActivityManager: Configuration unchanged in ActivityRecord{11d583f u0 com.android.launcher3/.Launcher t186}
+12-11 05:40:47.656   594   606 V ActivityManager: Skipping: already visible at ActivityRecord{11d583f u0 com.android.launcher3/.Launcher t186}
+12-11 05:40:47.656   594   606 V ActivityManager: Fullscreen: at ActivityRecord{11d583f u0 com.android.launcher3/.Launcher t186} stackInvisible=false behindFullscreenActivity=false
+12-11 05:40:47.656   594   606 V ActivityManager: Home task: at TaskRecord{a1bf50c #186 ?? U=0 StackId=0 sz=1} stackInvisible=false behindFullscreenActivity=true
+12-11 05:40:47.688   594   606 V ActivityManager: ensureActivitiesVisible behind ActivityRecord{11d583f u0 com.android.launcher3/.Launcher t186} configChanges=0x0
+12-11 05:40:47.688   594   606 V ActivityManager: Make visible? ActivityRecord{11d583f u0 com.android.launcher3/.Launcher t186} finishing=false state=RESUMED
+12-11 05:40:47.688   594   606 V ActivityManager: Ensuring correct configuration: ActivityRecord{11d583f u0 com.android.launcher3/.Launcher t186}
+12-11 05:40:47.688   594   606 V ActivityManager: Configuration unchanged in ActivityRecord{11d583f u0 com.android.launcher3/.Launcher t186}
+12-11 05:40:47.688   594   606 V ActivityManager: Skipping: already visible at ActivityRecord{11d583f u0 com.android.launcher3/.Launcher t186}
+12-11 05:40:47.688   594   606 V ActivityManager: Fullscreen: at ActivityRecord{11d583f u0 com.android.launcher3/.Launcher t186} stackInvisible=false behindFullscreenActivity=false
+12-11 05:40:47.689   594   606 V ActivityManager: Home task: at TaskRecord{a1bf50c #186 ?? U=0 StackId=0 sz=1} stackInvisible=false behindFullscreenActivity=true
+12-11 05:40:47.689   594   606 D ActivityManager: oom: memFactor=0 last=0 allowLow=true numProcs=25 last=25
+12-11 05:40:47.689   594   606 D ActivityManager: Did OOM ADJ in 1ms
+12-11 05:40:47.690   594   609 I ActivityManager: *** Delivering 1 process changes
+12-11 05:40:47.690   594   609 I ActivityManager: *** Delivering 1 uid changes
+12-11 05:40:47.690   594   609 I ActivityManager: UID CHANGED uid=10040: 2
+12-11 05:40:47.690   594   609 I ActivityManager: UID CHANGED uid=10040: 2
+12-11 05:40:47.696   594   609 I ActivityManager: UID CHANGED uid=10040: 2
+12-11 05:40:47.700   594  1923 I ActivityManager: Resumed activity; dropping state of: ActivityRecord{11d583f u0 com.android.launcher3/.Launcher t186}
+12-11 05:40:47.814   230   858 E BufferQueueProducer: [com.android.launcher3/com.android.launcher3.Launcher] connect: already connected (cur=1 req=1)
+12-11 05:40:47.815  1209  1283 D mali_winsys: EGLint new_window_surface(egl_winsys_display*, void*, EGLSurface, EGLConfig, egl_winsys_surface**, egl_color_buffer_format*, EGLBoolean) returns 0x3000
+12-11 05:40:47.901   594  1877 V ActivityManager: Activity idle: Token{454d06a ActivityRecord{11d583f u0 com.android.launcher3/.Launcher t186}}
+12-11 05:40:47.901   594  1877 D ActivityManager: activityIdleInternalLocked: Callers=com.android.server.am.ActivityManagerService.activityIdle:6882 android.app.ActivityManagerNative.onTransact:554 com.android.server.am.ActivityManagerService.onTransact:2909 android.os.Binder.execTransact:565 
+12-11 05:40:47.901   594  1877 V ActivityManager: ensureActivitiesVisible behind ActivityRecord{11d583f u0 com.android.launcher3/.Launcher t186} configChanges=0x0
+12-11 05:40:47.901   594  1877 V ActivityManager: Make visible? ActivityRecord{11d583f u0 com.android.launcher3/.Launcher t186} finishing=false state=RESUMED
+12-11 05:40:47.902   594  1877 V ActivityManager: Ensuring correct configuration: ActivityRecord{11d583f u0 com.android.launcher3/.Launcher t186}
+12-11 05:40:47.902   594  1877 V ActivityManager: Configuration unchanged in ActivityRecord{11d583f u0 com.android.launcher3/.Launcher t186}
+12-11 05:40:47.902   594  1877 V ActivityManager: Skipping: already visible at ActivityRecord{11d583f u0 com.android.launcher3/.Launcher t186}
+12-11 05:40:47.902   594  1877 V ActivityManager: Fullscreen: at ActivityRecord{11d583f u0 com.android.launcher3/.Launcher t186} stackInvisible=false behindFullscreenActivity=false
+12-11 05:40:47.902   594  1877 V ActivityManager: Home task: at TaskRecord{a1bf50c #186 ?? U=0 StackId=0 sz=1} stackInvisible=false behindFullscreenActivity=true
+12-11 05:40:47.902   594  1877 D ActivityManager: oom: memFactor=0 last=0 allowLow=true numProcs=25 last=25
+12-11 05:40:47.902   594  1877 D ActivityManager: Did OOM ADJ in 0ms
+12-11 05:40:47.940   594   615 D ActivityManager: notifyActivityDrawn: token=Token{454d06a ActivityRecord{11d583f u0 com.android.launcher3/.Launcher t186}}
+12-11 05:40:48.230   594   615 V ActivityManager: windowsVisibleLocked(): ActivityRecord{11d583f u0 com.android.launcher3/.Launcher t186}
+12-11 05:40:48.235   594   615 D ActivityManager: notifyActivityDrawn: token=Token{454d06a ActivityRecord{11d583f u0 com.android.launcher3/.Launcher t186}}
+12-11 05:40:48.339  1209  1283 W OpenGLRenderer: Incorrectly called buildLayer on View: ShortcutAndWidgetContainer, destroying layer...
+12-11 05:40:50.100   322   356 D alsa_route: route_set_controls() set route 24
+12-11 05:40:50.100   322   356 D AudioHardwareTiny: close device
+12-11 05:40:50.251   594  1921 D ActivityManager: Force removing proc 0:com.neolix.neolixcubing/1000 (com.neolix.neolixcubing/1000)
+12-11 05:40:50.251   594  1921 W ActivityManager: Ignoring remove of inactive process: ProcessRecord{bb7b91a 0:com.neolix.neolixcubing/1000}
+12-11 05:40:50.251   594  1921 V ActivityManager: Looking for task id=189 in recents
+12-11 05:40:50.252   594  1921 D ActivityManager: Creating ActivtyContainer{1}N
+12-11 05:40:50.252   594  1921 D ActivityManager: attachToDisplayLocked: ActivtyContainer{1}N to display=ActivityDisplay={0 numStacks=1} onTop=false
+12-11 05:40:50.252   594  1921 V ActivityManager: attachActivities: attaching ActivityStack{ca970d2 stackId=1, 0 tasks} to displayId=0 onTop=false
+12-11 05:40:50.252   594  1921 V ActivityManager: Added restored task=TaskRecord{5d2ea36 #189 A=com.neolix.neolixcubing U=0 StackId=1 sz=0} to stack=ActivityStack{ca970d2 stackId=1, 1 tasks}
+12-11 05:40:50.252   594  1921 W ActivityManager: Restored task id=189 from in recents
+12-11 05:40:50.253   594  1921 V ActivityManager: Starting activity when config will change = false
+12-11 05:40:50.253   594  1921 I ActivityManager: START u0 {act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10300000 cmp=com.neolix.neolixcubing/.MainActivity (has extras)} from uid 10040 on display 0
+12-11 05:40:50.253   594  1921 V ActivityManager: startActivity() => mUserLeaving=true
+12-11 05:40:50.253   594  1921 V ActivityManager: moveTaskToFront: TaskRecord{5d2ea36 #189 A=com.neolix.neolixcubing U=0 StackId=1 sz=0}
+12-11 05:40:50.253   594  1921 V ActivityManager: Starting new activity ActivityRecord{8f135a3 u0 com.neolix.neolixcubing/.MainActivity t189} in explicit task TaskRecord{5d2ea36 #189 A=com.neolix.neolixcubing U=0 StackId=1 sz=0}
+12-11 05:40:50.253   594  1921 V ActivityManager: Checking URI perm to data=null clip=null from Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10300000 cmp=com.neolix.neolixcubing/.MainActivity (has extras) }; flags=0x10300000
+12-11 05:40:50.253   322   356 D AudioHardwareTiny: out_set_parameters: kvpairs = routing=2
+12-11 05:40:50.254   322   356 D AudioHardwareTiny: start_output_stream
+12-11 05:40:50.255   594  1921 I ActivityManager: Adding activity ActivityRecord{8f135a3 u0 com.neolix.neolixcubing/.MainActivity t189} to stack to task TaskRecord{5d2ea36 #189 A=com.neolix.neolixcubing U=0 StackId=1 sz=0}
+12-11 05:40:50.255   594  1921 I ActivityManager: java.lang.RuntimeException: here
+12-11 05:40:50.255   594  1921 I ActivityManager: 	at com.android.server.am.ActivityStack.startActivityLocked(ActivityStack.java:2806)
+12-11 05:40:50.255   594  1921 I ActivityManager: 	at com.android.server.am.ActivityStarter.startActivityUnchecked(ActivityStarter.java:1220)
+12-11 05:40:50.255   594  1921 I ActivityManager: 	at com.android.server.am.ActivityStarter.startActivityLocked(ActivityStarter.java:516)
+12-11 05:40:50.255   594  1921 I ActivityManager: 	at com.android.server.am.ActivityStarter.startActivityMayWait(ActivityStarter.java:860)
+12-11 05:40:50.255   594  1921 I ActivityManager: 	at com.android.server.am.ActivityManagerService.startActivityInPackage(ActivityManagerService.java:4912)
+12-11 05:40:50.255   594  1921 I ActivityManager: 	at com.android.server.am.ActivityStackSupervisor.startActivityFromRecentsInner(ActivityStackSupervisor.java:4566)
+12-11 05:40:50.255   594  1921 I ActivityManager: 	at com.android.server.am.ActivityManagerService.startActivityFromRecents(ActivityManagerService.java:4896)
+12-11 05:40:50.255   594  1921 I ActivityManager: 	at com.android.server.am.AppErrors.crashApplicationInner(AppErrors.java:395)
+12-11 05:40:50.255   594  1921 I ActivityManager: 	at com.android.server.am.AppErrors.crashApplication(AppErrors.java:309)
+12-11 05:40:50.255   594  1921 I ActivityManager: 	at com.android.server.am.ActivityManagerService.handleApplicationCrashInner(ActivityManagerService.java:13704)
+12-11 05:40:50.255   594  1921 I ActivityManager: 	at com.android.server.am.NativeCrashListener$NativeCrashReporter.run(NativeCrashListener.java:86)
+12-11 05:40:50.255   322   356 D alsa_route: route_info->sound_card 0, route_info->devices 0  
+12-11 05:40:50.255   594  1921 V ActivityManager: Prepare open transition: starting ActivityRecord{8f135a3 u0 com.neolix.neolixcubing/.MainActivity t189}
+12-11 05:40:50.256   322   356 D alsa_route: route_set_controls() set route 0
+12-11 05:40:50.258   594  1921 D ActivityManager: com.android.server.am.ActivityStack.resumeTopActivityInnerLocked:2201 com.android.server.am.ActivityStack.resumeTopActivityUncheckedLocked:2160 : mLockScreenShown=LOCK_SCREEN_HIDDEN mWakefulness=Awake mSleeping=false
+12-11 05:40:50.258   594  1921 V ActivityManager: Resuming ActivityRecord{8f135a3 u0 com.neolix.neolixcubing/.MainActivity t189}
+12-11 05:40:50.258   594  1921 D ActivityManager: pauseBackStacks: stack=ActivityStack{672809b stackId=0, 1 tasks} mResumedActivity=ActivityRecord{11d583f u0 com.android.launcher3/.Launcher t186}
+12-11 05:40:50.258   594  1921 V ActivityManager: Moving to PAUSING: ActivityRecord{11d583f u0 com.android.launcher3/.Launcher t186}
+12-11 05:40:50.259   594  1921 V ActivityManager: Enqueueing pending pause: ActivityRecord{11d583f u0 com.android.launcher3/.Launcher t186}
+12-11 05:40:50.259   594  1921 D ActivityManager: updateUsageStats: comp=ActivityRecord{11d583f u0 com.android.launcher3/.Launcher t186}res=false
+12-11 05:40:50.263   594  1921 V ActivityManager: Waiting for pause to complete...
+12-11 05:40:50.263   594  1921 V ActivityManager: resumeTopActivityLocked: Skip resume: need to start pausing
+12-11 05:40:50.272   594  1719 V ActivityManager: Activity paused: token=Token{454d06a ActivityRecord{11d583f u0 com.android.launcher3/.Launcher t186}}, timeout=false
+12-11 05:40:50.272   594  1719 V ActivityManager: Moving to PAUSED: ActivityRecord{11d583f u0 com.android.launcher3/.Launcher t186} (pause complete)
+12-11 05:40:50.272   594  1719 V ActivityManager: Complete pause: ActivityRecord{11d583f u0 com.android.launcher3/.Launcher t186}
+12-11 05:40:50.272   594  1719 V ActivityManager: Enqueue pending stop if needed: ActivityRecord{11d583f u0 com.android.launcher3/.Launcher t186} wasStopping=false visible=true
+12-11 05:40:50.273   594  1719 D ActivityManager: com.android.server.am.ActivityStack.resumeTopActivityInnerLocked:2201 com.android.server.am.ActivityStack.resumeTopActivityUncheckedLocked:2160 : mLockScreenShown=LOCK_SCREEN_HIDDEN mWakefulness=Awake mSleeping=false
+12-11 05:40:50.273   594  1719 V ActivityManager: Resuming ActivityRecord{8f135a3 u0 com.neolix.neolixcubing/.MainActivity t189}
+12-11 05:40:50.273   594  1719 V ActivityManager: Resuming top, waiting visible to hide: ActivityRecord{11d583f u0 com.android.launcher3/.Launcher t186}
+12-11 05:40:50.273   594  1719 V ActivityManager: Prepare open transition: prev=ActivityRecord{11d583f u0 com.android.launcher3/.Launcher t186}
+12-11 05:40:50.274   594  1719 E ActivityManager: applyOptionsLocked: Unknown animationType=0
+12-11 05:40:50.274   594  1719 D ActivityManager: resumeTopActivityLocked: Restarting ActivityRecord{8f135a3 u0 com.neolix.neolixcubing/.MainActivity t189}
+12-11 05:40:50.274   594  1719 V ActivityManager: Clearing bad process: 1000/com.neolix.neolixcubing
+12-11 05:40:50.274   594  1719 V xzj     : startProcess: name=com.neolix.neolixcubing app=null knownToBeDead=true hostingType=activity intentFlags=0 thread=null pid=-1
+12-11 05:40:50.274   594  1719 V ActivityManager: startProcess: name=com.neolix.neolixcubing app=null knownToBeDead=true thread=null pid=-1
+12-11 05:40:50.295   594  1719 I ActivityManager: Start proc 1924:com.neolix.neolixcubing/1000 for activity com.neolix.neolixcubing/.MainActivity
+12-11 05:40:50.295   594  1719 V ActivityManager: ensureActivitiesVisible behind ActivityRecord{8f135a3 u0 com.neolix.neolixcubing/.MainActivity t189} configChanges=0x0
+12-11 05:40:50.296   594  1719 V ActivityManager: Make visible? ActivityRecord{8f135a3 u0 com.neolix.neolixcubing/.MainActivity t189} finishing=false state=INITIALIZING
+12-11 05:40:50.296   594  1719 V ActivityManager: Ensuring correct configuration: ActivityRecord{8f135a3 u0 com.neolix.neolixcubing/.MainActivity t189}
+12-11 05:40:50.296   594  1719 V ActivityManager: Configuration unchanged in ActivityRecord{8f135a3 u0 com.neolix.neolixcubing/.MainActivity t189}
+12-11 05:40:50.296   594  1719 V ActivityManager: Start and freeze screen for ActivityRecord{8f135a3 u0 com.neolix.neolixcubing/.MainActivity t189}
+12-11 05:40:50.296   594  1719 V ActivityManager: Starting and making visible: ActivityRecord{8f135a3 u0 com.neolix.neolixcubing/.MainActivity t189}
+12-11 05:40:50.296   594  1719 V ActivityManager: Clearing bad process: 1000/com.neolix.neolixcubing
+12-11 05:40:50.296   594  1719 V xzj     : startProcess: name=com.neolix.neolixcubing app=ProcessRecord{6760591 1924:com.neolix.neolixcubing/1000} knownToBeDead=true hostingType=activity intentFlags=0 thread=null pid=1924
+12-11 05:40:50.297   594  1719 V ActivityManager: startProcess: name=com.neolix.neolixcubing app=ProcessRecord{6760591 1924:com.neolix.neolixcubing/1000} knownToBeDead=true thread=null pid=1924
+12-11 05:40:50.297   594  1719 V ActivityManager: App already running: ProcessRecord{6760591 1924:com.neolix.neolixcubing/1000}
+12-11 05:40:50.297   594  1719 V ActivityManager: Fullscreen: at ActivityRecord{8f135a3 u0 com.neolix.neolixcubing/.MainActivity t189} stackInvisible=false behindFullscreenActivity=false
+12-11 05:40:50.297   594  1719 V ActivityManager: ensureActivitiesVisible behind ActivityRecord{11d583f u0 com.android.launcher3/.Launcher t186} configChanges=0x0
+12-11 05:40:50.297   594  1719 V ActivityManager: Make invisible? ActivityRecord{11d583f u0 com.android.launcher3/.Launcher t186} finishing=false state=PAUSED stackInvisible=true behindFullscreenActivity=true mLaunchTaskBehind=false
+12-11 05:40:50.297   594  1719 V ActivityManager: Making invisible: ActivityRecord{11d583f u0 com.android.launcher3/.Launcher t186} PAUSED
+12-11 05:40:50.298  1924  1924 I art     : Late-enabling -Xcheck:jni
+12-11 05:40:50.298  1924  1924 E art     : setrlimit(RLIMIT_CORE) failed for pid 1924: Operation not permitted
+12-11 05:40:50.299   594  1719 D ActivityManager: screenshotActivitiesLocked: ActivityRecord{11d583f u0 com.android.launcher3/.Launcher t186}
+12-11 05:40:50.299   594  1719 D ActivityManager: 	Home stack
+12-11 05:40:50.299   594  1719 V ActivityManager: Scheduling idle now: forceIdle=trueimmediate=true
+12-11 05:40:50.299   594  1719 V ActivityManager: Home task: at TaskRecord{a1bf50c #186 ?? U=0 StackId=0 sz=1} stackInvisible=true behindFullscreenActivity=true
+12-11 05:40:50.300   594   608 D ActivityManager: handleMessage: IDLE_NOW_MSG: r=null
+12-11 05:40:50.300   594   608 V ActivityManager: Activity idle: null
+12-11 05:40:50.300   594   608 D ActivityManager: allResumedActivitiesIdle: stack=1 null not idle
+12-11 05:40:50.300   594   608 V ActivityManager: Stopping ActivityRecord{11d583f u0 com.android.launcher3/.Launcher t186}: nowVisible=false waitingVisible=true finishing=false
+12-11 05:40:50.304   594   608 V ActivityManager: Set 1209 com.android.launcher3 adj 200: pausing
+12-11 05:40:50.304   594   608 V ActivityManager: Setting sched group of com.android.launcher3 to 1
+12-11 05:40:50.310   594   608 D ActivityManager: oom: memFactor=0 last=0 allowLow=true numProcs=25 last=25
+12-11 05:40:50.310   594   608 D ActivityManager: Did OOM ADJ in 7ms
+12-11 05:40:50.322   594   609 V ActivityManager: Unregister receiver: android.app.LoadedApk$ReceiverDispatcher$InnerReceiver@912ee9c
+12-11 05:40:50.327   594  1877 V ActivityManager: Binding process pid 1924 to record ProcessRecord{6760591 1924:com.neolix.neolixcubing/1000}
+12-11 05:40:50.327   594  1877 V ActivityManager: New death recipient com.android.server.am.ActivityManagerService$AppDeathRecipient@48bb282 for thread android.os.BinderProxy@26acd93
+12-11 05:40:50.328   594  1877 V ActivityManager_MU: generateApplicationProvidersLocked, app.info.uid = 1000
+12-11 05:40:50.328   594  1877 V ActivityManager: New app record ProcessRecord{6760591 1924:com.neolix.neolixcubing/1000} thread=android.os.BinderProxy@26acd93 pid=1924
+12-11 05:40:50.328   594  1877 V ActivityManager: Binding proc com.neolix.neolixcubing with config {1.0 ?mcc?mnc [zh_CN_#Hans,en_US,zh_MO_#Hans] ldltr sw877dp w877dp h1098dp 280dpi xlrg port finger -keyb/v/h -nav/h s.5}
+12-11 05:40:50.329   594  1877 D ActivityManager: Adding at 23 of LRU list: ProcessRecord{6760591 1924:com.neolix.neolixcubing/1000}
+12-11 05:40:50.340   594  1877 V ActivityManager: Ensuring correct configuration: ActivityRecord{8f135a3 u0 com.neolix.neolixcubing/.MainActivity t189}
+12-11 05:40:50.340   594  1877 V ActivityManager: Configuration unchanged in ActivityRecord{8f135a3 u0 com.neolix.neolixcubing/.MainActivity t189}
+12-11 05:40:50.340   594  1877 V ActivityManager: ensureActivitiesVisible behind ActivityRecord{8f135a3 u0 com.neolix.neolixcubing/.MainActivity t189} configChanges=0x0
+12-11 05:40:50.340   594  1877 V ActivityManager: Make visible? ActivityRecord{8f135a3 u0 com.neolix.neolixcubing/.MainActivity t189} finishing=false state=INITIALIZING
+12-11 05:40:50.340   594  1877 V ActivityManager: Start and freeze screen for ActivityRecord{8f135a3 u0 com.neolix.neolixcubing/.MainActivity t189}
+12-11 05:40:50.341   594  1877 V ActivityManager: Fullscreen: at ActivityRecord{8f135a3 u0 com.neolix.neolixcubing/.MainActivity t189} stackInvisible=false behindFullscreenActivity=false
+12-11 05:40:50.341   594  1877 V ActivityManager: ensureActivitiesVisible behind ActivityRecord{11d583f u0 com.android.launcher3/.Launcher t186} configChanges=0x0
+12-11 05:40:50.341   594  1877 V ActivityManager: Make invisible? ActivityRecord{11d583f u0 com.android.launcher3/.Launcher t186} finishing=false state=PAUSED stackInvisible=true behindFullscreenActivity=true mLaunchTaskBehind=false
+12-11 05:40:50.341   594  1877 V ActivityManager: Already invisible: ActivityRecord{11d583f u0 com.android.launcher3/.Launcher t186}
+12-11 05:40:50.341   594  1877 V ActivityManager: Home task: at TaskRecord{a1bf50c #186 ?? U=0 StackId=0 sz=1} stackInvisible=true behindFullscreenActivity=true
+12-11 05:40:50.355   594  1877 V ActivityManager: Launching: ActivityRecord{8f135a3 u0 com.neolix.neolixcubing/.MainActivity t189}
+12-11 05:40:50.355   594  1877 D ActivityManager: Adding to top of LRU activity list: ProcessRecord{6760591 1924:com.neolix.neolixcubing/1000}
+12-11 05:40:50.356   594  1877 V ActivityManager: Set 1924 com.neolix.neolixcubing adj 0: top-activity
+12-11 05:40:50.356   594  1877 V ActivityManager: Setting sched group of com.neolix.neolixcubing to 2
+12-11 05:40:50.357   594  1877 D ActivityManager: Process state change from N  to T  next pss in 10000: ProcessRecord{6760591 1924:com.neolix.neolixcubing/1000}
+12-11 05:40:50.357   594  1877 V ActivityManager: Proc state change of com.neolix.neolixcubing to 2
+12-11 05:40:50.358   594  1877 D ActivityManager: Checking proc [[com.neolix.neolixcubing]] state changes: old = -1, new = 2
+12-11 05:40:50.358   594  1877 I ActivityManager: Changes in ProcessRecord{6760591 1924:com.neolix.neolixcubing/1000}: 3
+12-11 05:40:50.358   594  1877 I ActivityManager: Retrieving available item: com.android.server.am.ActivityManagerService$ProcessChangeItem@85cec10
+12-11 05:40:50.358   594  1877 I ActivityManager: *** Enqueueing dispatch processes changed!
+12-11 05:40:50.358   594  1877 I ActivityManager: Item 85cec10 1924:com.neolix.neolixcubing/1000: changes=3 procState=2 foreground=true type=top-activity source=null target=null
+12-11 05:40:50.359   594  1877 D ActivityManager: oom: memFactor=0 last=0 allowLow=true numProcs=26 last=25
+12-11 05:40:50.359   594  1877 D ActivityManager: Did OOM ADJ in 4ms
+12-11 05:40:50.359   594  1877 V ActivityManager: Launching: ActivityRecord{8f135a3 u0 com.neolix.neolixcubing/.MainActivity t189} icicle=null with results=null newIntents=null andResume=true
+12-11 05:40:50.360   594  1877 V ActivityManager: Moving to RESUMED: ActivityRecord{8f135a3 u0 com.neolix.neolixcubing/.MainActivity t189} (starting new instance) callers=com.android.server.am.ActivityStackSupervisor.realStartActivityLocked:1362 com.android.server.am.ActivityStackSupervisor.attachApplicationLocked:866 com.android.server.am.ActivityManagerService.attachApplicationLocked:6803 com.android.server.am.ActivityManagerService.attachApplication:6870 android.app.ActivityManagerNative.onTransact:539 
+12-11 05:40:50.360   594  1877 D ActivityManager: addRecent: moving to top TaskRecord{5d2ea36 #189 A=com.neolix.neolixcubing U=0 StackId=1 sz=1} from 1
+12-11 05:40:50.361   594  1877 D ActivityManager: scheduleIdleTimeoutLocked: Callers=com.android.server.am.ActivityStack.completeResumeLocked:1460 com.android.server.am.ActivityStack.minimalResumeActivityLocked:910 com.android.server.am.ActivityStackSupervisor.realStartActivityLocked:1362 com.android.server.am.ActivityStackSupervisor.attachApplicationLocked:866 
+12-11 05:40:50.361   594  1877 D ActivityManager: updateUsageStats: comp=ActivityRecord{8f135a3 u0 com.neolix.neolixcubing/.MainActivity t189}res=true
+12-11 05:40:50.362   594  1877 D ActivityManager: allResumedActivitiesComplete: mLastFocusedStack changing from=ActivityStack{672809b stackId=0, 1 tasks} to=ActivityStack{ca970d2 stackId=1, 1 tasks}
+12-11 05:40:50.362   594  1877 V ActivityManager: ensureActivitiesVisible behind ActivityRecord{8f135a3 u0 com.neolix.neolixcubing/.MainActivity t189} configChanges=0x0
+12-11 05:40:50.362   594  1877 V ActivityManager: Make visible? ActivityRecord{8f135a3 u0 com.neolix.neolixcubing/.MainActivity t189} finishing=false state=RESUMED
+12-11 05:40:50.362   594  1877 V ActivityManager: Ensuring correct configuration: ActivityRecord{8f135a3 u0 com.neolix.neolixcubing/.MainActivity t189}
+12-11 05:40:50.362   594  1877 V ActivityManager: Configuration unchanged in ActivityRecord{8f135a3 u0 com.neolix.neolixcubing/.MainActivity t189}
+12-11 05:40:50.362   594  1877 V ActivityManager: Skipping: already visible at ActivityRecord{8f135a3 u0 com.neolix.neolixcubing/.MainActivity t189}
+12-11 05:40:50.362   594  1877 V ActivityManager: Fullscreen: at ActivityRecord{8f135a3 u0 com.neolix.neolixcubing/.MainActivity t189} stackInvisible=false behindFullscreenActivity=false
+12-11 05:40:50.362   594  1877 V ActivityManager: ensureActivitiesVisible behind ActivityRecord{11d583f u0 com.android.launcher3/.Launcher t186} configChanges=0x0
+12-11 05:40:50.362   594  1877 V ActivityManager: Make invisible? ActivityRecord{11d583f u0 com.android.launcher3/.Launcher t186} finishing=false state=PAUSED stackInvisible=true behindFullscreenActivity=true mLaunchTaskBehind=false
+12-11 05:40:50.362   594  1877 V ActivityManager: Already invisible: ActivityRecord{11d583f u0 com.android.launcher3/.Launcher t186}
+12-11 05:40:50.362   594  1877 V ActivityManager: Home task: at TaskRecord{a1bf50c #186 ?? U=0 StackId=0 sz=1} stackInvisible=true behindFullscreenActivity=true
+12-11 05:40:50.376   594  1877 I ActivityManager: Launch completed; removing icicle of null
+12-11 05:40:50.376   594   609 I ActivityManager: *** Delivering 1 process changes
+12-11 05:40:50.379   230   239 D mali_so : [File] : hardware/rockchip/libgralloc/gralloc_drm_rockchip.c; [Line] : 1323; [Func] : drm_gem_rockchip_alloc;
+12-11 05:40:50.379   230   239 D mali_so : to ask for cachable buffer for CPU access, usage : 0x933
+12-11 05:40:50.397   594  1877 V ActivityManager: getTasks: max=1, flags=0
+12-11 05:40:50.397   594  1877 V ActivityManager: com.neolix.neolixcubing/.MainActivity: task=TaskRecord{5d2ea36 #189 A=com.neolix.neolixcubing U=0 StackId=1 sz=1}
+12-11 05:40:50.397   594  1877 V ActivityManager: com.android.launcher3/.Launcher: task=TaskRecord{a1bf50c #186 ?? U=0 StackId=0 sz=1}
+12-11 05:40:50.401   594   716 D ActivityManager: Skipping, home stack task: TaskRecord{a1bf50c #186 ?? U=0 StackId=0 sz=1}
+12-11 05:40:50.467   594  1877 D ActivityManager: Not moving, persistent: ProcessRecord{e98f45e 594:system/1000}
+12-11 05:40:50.467   594  1877 I ActivityManager: Adjust success: true
+12-11 05:40:50.482  1924  1924 W art     : Before Android 4.1, method android.graphics.PorterDuffColorFilter android.support.graphics.drawable.VectorDrawableCompat.updateTintFilter(android.graphics.PorterDuffColorFilter, android.content.res.ColorStateList, android.graphics.PorterDuff$Mode) would have incorrectly overridden the package-private method in android.graphics.drawable.Drawable
+12-11 05:40:50.538   594   615 W AppOps  : Finishing op nesting under-run: uid 1000 pkg android code 24 time=0 duration=0 nesting=0
+12-11 05:40:50.557   594   615 V ActivityManager: windowsGone(): ActivityRecord{11d583f u0 com.android.launcher3/.Launcher t186}
+12-11 05:40:50.560   594  1877 V ActivityManager: Report configuration: Token{352459 ActivityRecord{8f135a3 u0 com.neolix.neolixcubing/.MainActivity t189}} null [I@b320585
+12-11 05:40:50.569   594  1877 D UI_FIFO : Set RenderThread tid 1940 for pid 1924
+12-11 05:40:50.569   594  1877 D UI_FIFO : Promoting 1940out of band
+12-11 05:40:50.591   594  1877 I ActivityManager: Resumed activity; dropping state of: ActivityRecord{8f135a3 u0 com.neolix.neolixcubing/.MainActivity t189}
+12-11 05:40:50.625  1924  1940 I mali_so : [File] : hardware/arm/maliT760/driver/product/base/src/mali_base_kbase.c; [Line] : 978; [Func] : base_context_deal_with_version_affairs_rk_ext;
+12-11 05:40:50.625  1924  1940 I mali_so : arm_release_ver of this mali_so is 'r14p0-01rel0', rk_so_ver is '4@0'.
+12-11 05:40:50.625  1924  1940 D mali_so : [File] : hardware/arm/maliT760/driver/product/base/src/mali_base_kbase.c; [Line] : 983; [Func] : base_context_deal_with_version_affairs_rk_ext;
+12-11 05:40:50.625  1924  1940 D mali_so : current process is NOT sf, to bail out.
+12-11 05:40:50.630  1924  1940 I OpenGLRenderer: Initialized EGL, version 1.4
+12-11 05:40:50.630  1924  1940 D OpenGLRenderer: Swap behavior 1
+12-11 05:40:50.684   594   687 I ActivityManager: Saving task=TaskRecord{5d2ea36 #189 A=com.neolix.neolixcubing U=0 StackId=1 sz=1}
+12-11 05:40:50.708   230   311 E BufferQueueProducer: [com.neolix.neolixcubing/com.neolix.neolixcubing.MainActivity] connect: already connected (cur=1 req=1)
+12-11 05:40:50.709  1924  1940 D mali_winsys: EGLint new_window_surface(egl_winsys_display*, void*, EGLSurface, EGLConfig, egl_winsys_surface**, egl_color_buffer_format*, EGLBoolean) returns 0x3000
+12-11 05:40:50.834   594   615 D ActivityManager: notifyActivityDrawn: token=Token{352459 ActivityRecord{8f135a3 u0 com.neolix.neolixcubing/.MainActivity t189}}
+12-11 05:40:50.834   594   615 I ActivityManager: Displayed com.neolix.neolixcubing/.MainActivity: +561ms
+12-11 05:40:50.852   754   754 I LatinIME: Starting input. Cursor position = 0,0
+12-11 05:40:50.888   594  1719 V ActivityManager: Activity idle: Token{352459 ActivityRecord{8f135a3 u0 com.neolix.neolixcubing/.MainActivity t189}}
+12-11 05:40:50.889   594  1719 D ActivityManager: activityIdleInternalLocked: Callers=com.android.server.am.ActivityManagerService.activityIdle:6882 android.app.ActivityManagerNative.onTransact:554 com.android.server.am.ActivityManagerService.onTransact:2909 android.os.Binder.execTransact:565 
+12-11 05:40:50.889   594  1719 V ActivityManager: ensureActivitiesVisible behind ActivityRecord{8f135a3 u0 com.neolix.neolixcubing/.MainActivity t189} configChanges=0x0
+12-11 05:40:50.890   594  1719 V ActivityManager: Make visible? ActivityRecord{8f135a3 u0 com.neolix.neolixcubing/.MainActivity t189} finishing=false state=RESUMED
+12-11 05:40:50.890   594  1719 V ActivityManager: Ensuring correct configuration: ActivityRecord{8f135a3 u0 com.neolix.neolixcubing/.MainActivity t189}
+12-11 05:40:50.890   594  1719 V ActivityManager: Configuration unchanged in ActivityRecord{8f135a3 u0 com.neolix.neolixcubing/.MainActivity t189}
+12-11 05:40:50.890   594  1719 V ActivityManager: Skipping: already visible at ActivityRecord{8f135a3 u0 com.neolix.neolixcubing/.MainActivity t189}
+12-11 05:40:50.890   594  1719 V ActivityManager: Fullscreen: at ActivityRecord{8f135a3 u0 com.neolix.neolixcubing/.MainActivity t189} stackInvisible=false behindFullscreenActivity=false
+12-11 05:40:50.890   594  1719 V ActivityManager: ensureActivitiesVisible behind ActivityRecord{11d583f u0 com.android.launcher3/.Launcher t186} configChanges=0x0
+12-11 05:40:50.890   594  1719 V ActivityManager: Make invisible? ActivityRecord{11d583f u0 com.android.launcher3/.Launcher t186} finishing=false state=PAUSED stackInvisible=true behindFullscreenActivity=true mLaunchTaskBehind=false
+12-11 05:40:50.890   594  1719 V ActivityManager: Already invisible: ActivityRecord{11d583f u0 com.android.launcher3/.Launcher t186}
+12-11 05:40:50.890   594  1719 V ActivityManager: Home task: at TaskRecord{a1bf50c #186 ?? U=0 StackId=0 sz=1} stackInvisible=true behindFullscreenActivity=true
+12-11 05:40:50.891   594  1719 V ActivityManager: Stopping ActivityRecord{11d583f u0 com.android.launcher3/.Launcher t186}: nowVisible=false waitingVisible=true finishing=false
+12-11 05:40:50.891   594  1719 D ActivityManager: oom: memFactor=0 last=0 allowLow=true numProcs=26 last=26
+12-11 05:40:50.891   594  1719 D ActivityManager: Did OOM ADJ in 1ms
+12-11 05:40:51.173   594   615 V ActivityManager: windowsVisibleLocked(): ActivityRecord{8f135a3 u0 com.neolix.neolixcubing/.MainActivity t189}
+12-11 05:40:51.174   594   615 V ActivityManager: Was waiting for visible: ActivityRecord{11d583f u0 com.android.launcher3/.Launcher t186}
+12-11 05:40:51.174   594   608 D ActivityManager: handleMessage: IDLE_NOW_MSG: r=null
+12-11 05:40:51.174   594   608 V ActivityManager: Activity idle: null
+12-11 05:40:51.174   594   608 V ActivityManager: ensureActivitiesVisible behind ActivityRecord{8f135a3 u0 com.neolix.neolixcubing/.MainActivity t189} configChanges=0x0
+12-11 05:40:51.175   594   608 V ActivityManager: Make visible? ActivityRecord{8f135a3 u0 com.neolix.neolixcubing/.MainActivity t189} finishing=false state=RESUMED
+12-11 05:40:51.175   594   608 V ActivityManager: Ensuring correct configuration: ActivityRecord{8f135a3 u0 com.neolix.neolixcubing/.MainActivity t189}
+12-11 05:40:51.175   594   608 V ActivityManager: Configuration unchanged in ActivityRecord{8f135a3 u0 com.neolix.neolixcubing/.MainActivity t189}
+12-11 05:40:51.175   594   608 V ActivityManager: Skipping: already visible at ActivityRecord{8f135a3 u0 com.neolix.neolixcubing/.MainActivity t189}
+12-11 05:40:51.175   594   608 V ActivityManager: Fullscreen: at ActivityRecord{8f135a3 u0 com.neolix.neolixcubing/.MainActivity t189} stackInvisible=false behindFullscreenActivity=false
+12-11 05:40:51.175   594   608 V ActivityManager: ensureActivitiesVisible behind ActivityRecord{11d583f u0 com.android.launcher3/.Launcher t186} configChanges=0x0
+12-11 05:40:51.175   594   608 V ActivityManager: Make invisible? ActivityRecord{11d583f u0 com.android.launcher3/.Launcher t186} finishing=false state=PAUSED stackInvisible=true behindFullscreenActivity=true mLaunchTaskBehind=false
+12-11 05:40:51.175   594   608 V ActivityManager: Already invisible: ActivityRecord{11d583f u0 com.android.launcher3/.Launcher t186}
+12-11 05:40:51.175   594   608 V ActivityManager: Home task: at TaskRecord{a1bf50c #186 ?? U=0 StackId=0 sz=1} stackInvisible=true behindFullscreenActivity=true
+12-11 05:40:51.176   594   608 V ActivityManager: Stopping ActivityRecord{11d583f u0 com.android.launcher3/.Launcher t186}: nowVisible=true waitingVisible=false finishing=false
+12-11 05:40:51.176   594   608 V ActivityManager: Ready to stop: ActivityRecord{11d583f u0 com.android.launcher3/.Launcher t186}
+12-11 05:40:51.176   594   608 D ActivityManager: Stopping: ActivityRecord{11d583f u0 com.android.launcher3/.Launcher t186}
+12-11 05:40:51.176   594   608 V ActivityManager: Moving to STOPPING: ActivityRecord{11d583f u0 com.android.launcher3/.Launcher t186} (stop requested)
+12-11 05:40:51.176   594   608 V ActivityManager: Stopping visible=false for ActivityRecord{11d583f u0 com.android.launcher3/.Launcher t186}
+12-11 05:40:51.182   594   615 D ActivityManager: notifyActivityDrawn: token=Token{352459 ActivityRecord{8f135a3 u0 com.neolix.neolixcubing/.MainActivity t189}}
+12-11 05:40:51.183   594   608 V ActivityManager: Setting sched group of com.android.launcher3 to 0
+12-11 05:40:51.197   594   608 D ActivityManager: Process state change from T  to HO next pss in 30000: ProcessRecord{7d9d30d 1209:com.android.launcher3/u0a40}
+12-11 05:40:51.197   594   608 V ActivityManager: Proc state change of com.android.launcher3 to 12
+12-11 05:40:51.197   594   608 D ActivityManager: Checking proc [[com.android.launcher3]] state changes: old = 2, new = 12
+12-11 05:40:51.197   594   608 I ActivityManager: Changes in ProcessRecord{7d9d30d 1209:com.android.launcher3/u0a40}: 2
+12-11 05:40:51.198   594   608 I ActivityManager: Retrieving available item: com.android.server.am.ActivityManagerService$ProcessChangeItem@85cec10
+12-11 05:40:51.198   594   608 I ActivityManager: *** Enqueueing dispatch processes changed!
+12-11 05:40:51.198   594   608 I ActivityManager: Item 85cec10 1209:com.android.launcher3/u0a40: changes=2 procState=12 foreground=true type=stopping source=null target=null
+12-11 05:40:51.199   594   608 D ActivityManager: oom: memFactor=0 last=0 allowLow=true numProcs=26 last=26
+12-11 05:40:51.199   594   608 V ActivityManager: Trimming memory of ui hidden com.android.launcher3 to 20
+12-11 05:40:51.200   594   608 I ActivityManager: Changes in UidRecord{3cb5ad1 u0a40 HO procs:1}: proc state from 2 to 12
+12-11 05:40:51.200   594   608 I ActivityManager: *** Enqueueing dispatch uid changed!
+12-11 05:40:51.200   594   608 I ActivityManager: Retrieving available item: com.android.server.am.UidRecord$ChangeItem@ac4f278
+12-11 05:40:51.200   594   608 D ActivityManager: Did OOM ADJ in 18ms
+12-11 05:40:51.201   594   609 I ActivityManager: *** Delivering 1 process changes
+12-11 05:40:51.201   594   609 I ActivityManager: *** Delivering 1 uid changes
+12-11 05:40:51.201   594   609 I ActivityManager: UID CHANGED uid=10040: 12
+12-11 05:40:51.201   594   609 I ActivityManager: UID CHANGED uid=10040: 12
+12-11 05:40:51.202   594   609 I ActivityManager: UID CHANGED uid=10040: 12
+12-11 05:40:51.209   594  1719 V ActivityManager: Activity stopped: token=Token{454d06a ActivityRecord{11d583f u0 com.android.launcher3/.Launcher t186}}
+12-11 05:40:51.209   594  1719 I ActivityManager: Saving icicle of ActivityRecord{11d583f u0 com.android.launcher3/.Launcher t186}: Bundle[mParcelledData.dataSize=4636]
+12-11 05:40:51.209   594  1719 V ActivityManager: Moving to STOPPED: ActivityRecord{11d583f u0 com.android.launcher3/.Launcher t186} (stop complete)
+12-11 05:40:51.213   594  1719 V ActivityManager: Set 1209 com.android.launcher3 adj 600: home
+12-11 05:40:51.213   594  1719 I ActivityManager: Changes in ProcessRecord{7d9d30d 1209:com.android.launcher3/u0a40}: 1
+12-11 05:40:51.213   594  1719 I ActivityManager: Retrieving available item: com.android.server.am.ActivityManagerService$ProcessChangeItem@85cec10
+12-11 05:40:51.213   594  1719 I ActivityManager: *** Enqueueing dispatch processes changed!
+12-11 05:40:51.214   594  1719 I ActivityManager: Item 85cec10 1209:com.android.launcher3/u0a40: changes=1 procState=12 foreground=false type=home source=null target=null
+12-11 05:40:51.214   594  1719 D ActivityManager: oom: memFactor=0 last=0 allowLow=true numProcs=26 last=26
+12-11 05:40:51.215   594  1719 D ActivityManager: Did OOM ADJ in 3ms
+12-11 05:40:51.215   594   609 I ActivityManager: *** Delivering 1 process changes
+12-11 05:40:51.237   594   687 I ActivityManager: Saving task=TaskRecord{5d2ea36 #189 A=com.neolix.neolixcubing U=0 StackId=1 sz=1}
