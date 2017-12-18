@@ -1,13 +1,16 @@
 #include "Mars04_SDK_Wrapper.h"
 namespace sunny {
 //global variable
-CLibTof *libtof = NULL;
-DeviceInfo_t *deviceinfo = NULL;
+CLibTof *libtof = NULL;                         //pmd mars04 sdk class
+DeviceInfo_t *deviceinfo = NULL;                //mars04 dev class object
 FrameData_t* frame_data = NULL;		   			//指向存储深度数据的缓存,注意它的深度数据是点云的.
-FrameDataRgb_t* frame_data_Rgb = NULL;  		 //指向存储彩图数据的缓存
-DepthPixel_t * pNeolixDepthData = NULL;           //新石器算法需要的深度数据格式.
-BOOL IS_Running=FALSE;
-
+FrameDataRgb_t* frame_data_Rgb = NULL;  		//指向存储彩图数据的缓存
+DepthPixel_t * pNeolixDepthData = NULL;         //新石器算法需要的深度数据格式.
+//下边是获取深度图的线程所用
+BOOL IS_Running=FALSE;                          //开始/停止获取深度数据
+BOOL thread_exit=FALSE;                         //退出获取深度数据的线程
+pthread_t pth_depth;
+//others
 unsigned char	 *PColorbuffer_s = NULL;
 int DEPTHMAP_W;
 int DEPTHMAP_H;
@@ -16,10 +19,10 @@ int DEPTHVIDEO_H;
 int DEPTHVIDEO_FRAME_SIZE;
 BOOL IS_RGBD;
 BOOL IS_RGB;
-//func proto
-getDepthFunc_t g_getDepthCallback = NULL;
-#define LOG_TAG "mars04_wrapper_native"
 
+getDepthFunc_t g_getDepthCallback = NULL;       //指向JNI层获取深度数据的func
+
+#define LOG_TAG "mars04_wrapper_native"
 #define LOGI(...) ((void)__android_log_print(ANDROID_LOG_INFO, LOG_TAG, __VA_ARGS__))
 #define LOGE(...) ((void)__android_log_print(ANDROID_LOG_ERROR, LOG_TAG, __VA_ARGS__))
 TOF_ErrorCode_t getMars04DepthData(void);
@@ -36,8 +39,7 @@ void registerJNIGetDepthCB(getDepthFunc_t getDepthCallback)
 void* get_depthdata_fuc(void* param)
 {
 //    CLibTof* libtoftemp = (CLibTof*)param;
-//    TOF_ErrorCode_t rs;
-	 while (IS_Running)
+	 while (!thread_exit)
     {
         if (!IS_Running)
         {
@@ -50,11 +52,19 @@ void* get_depthdata_fuc(void* param)
 }
 
 TOF_ErrorCode_t DisconnectMars04(void) {
+	TOF_ErrorCode_t rv = LTOF_SUCCESS;
+	LOGI("DisconnectMars04\n");
 	//断开设备连接，释放内存
 	IS_Running=FALSE;
-	usleep(50000);//等待线程中的操作完成
-	LOGI("DisconnectMars04\n");
-	TOF_ErrorCode_t rv = LTOF_SUCCESS;
+	thread_exit = TRUE;
+	pthread_join(pth_depth, NULL);
+	LOGI("thread exit success!!\n");
+	rv = libtof->LibTOF_DisConnect();
+	if (rv<0)
+	{
+		LOGI("LibTOF_DisConnect Failed, errno:[%d]\n", rv);
+	}
+	LOGI("LibTOF_DisConnect OK!!!\n");
 	if (frame_data != NULL)
 		free(frame_data);
 	if (frame_data_Rgb != NULL)
@@ -65,13 +75,6 @@ TOF_ErrorCode_t DisconnectMars04(void) {
 		delete libtof;
 	if (deviceinfo != NULL)
 		delete deviceinfo;
-
-	rv = libtof->LibTOF_DisConnect();
-	if (rv<0)
-    {
-        LOGI("LibTOF_DisConnect Failed, errno:[%d]\n", rv);
-	}
-	 LOGI("LibTOF_DisConnect OK!!!\n");
 	return rv;
 }
 
@@ -85,6 +88,8 @@ TOF_ErrorCode_t ConnectMars04(DeviceInfo_t &devInfo)
 	pNeolixDepthData = NULL;
 
     TOF_ErrorCode_t rv = LTOF_SUCCESS;
+	LOGI("ConnectMars04:libtof pointer to addr:%p\n", libtof);
+
 	libtof = new CLibTof();
 	#ifdef NATIVE_WRAPPER_DEBUG
     LOGI("------------------------------------------------\n");
@@ -92,12 +97,14 @@ TOF_ErrorCode_t ConnectMars04(DeviceInfo_t &devInfo)
     LOGI("------------------------------------------------\n");
 	#endif
 	//连接相机，初始化相机
+	
     rv = libtof->LibTOF_Connect();
     if (rv<0)
     {
         LOGI("LibTOF_Connect Failed, errno:[%d]\n", rv);
         return rv;
     }
+	LOGI("ConnectMars04:libtof pointer to addr:%p\n", libtof);
     //获取设备信息，图像宽高，设备版本信息
     deviceinfo = new DeviceInfo_t;
     memset(deviceinfo, 0, sizeof(DeviceInfo_t));
@@ -144,10 +151,10 @@ TOF_ErrorCode_t ConnectMars04(DeviceInfo_t &devInfo)
 	libtof->LibTOF_SetSceneMode(Scene_No);
 
 	//启动线程,开始拿到数据.
+	thread_exit = FALSE;
 	IS_Running = TRUE;
     //创建取数据线程
-    pthread_t pth_depth;
-    pthread_create(&pth_depth,NULL,get_depthdata_fuc,libtof);
+   	pthread_create(&pth_depth,NULL,get_depthdata_fuc,libtof);
 	LOGI("get depth data thread is running!!!\n");
 	return (rv );
 }
@@ -162,72 +169,60 @@ TOF_ErrorCode_t setMars04SceneMode(SceneMode_e umode)
 {
 	LOGI("setMars04SceneMode\n");
 	TOF_ErrorCode_t rv = LTOF_SUCCESS;
-	//rv = libtof->LibTOF_SetSceneMode(umode);
+	rv = libtof->LibTOF_SetSceneMode(umode);
 	return rv;
 }
 
 
-//下边的函数最好使用线程来调用,会发生阻塞.
+//下边的函数最好使用线程来调用,LibTOF_RcvDepthFrame2函数会发生阻塞.
 TOF_ErrorCode_t getMars04DepthData(void)
 {
-//	LOGI("get Depth data\n");
-//	if (nidata == NULL) 
-//		return LTOF_ERROR_INVALID_PARAM;
-	static 	CLibTof* libtoftemp = libtof;
     static TOF_ErrorCode_t rs = LTOF_SUCCESS;
 	if (frame_data == NULL) {
-		LOGI("getMars04DepthData: malloc for depth\n");
+		LOGI("getMars04DepthData: malloc for depth data\n");
 		frame_data=(FrameData_t*)malloc(sizeof(FrameData_t)*DEPTHMAP_W*DEPTHMAP_H+DEPTHMAP_W);
 		if (NULL == frame_data) {
 			LOGI("getMars04DepthData malloc frame_data fail\n");
 			return LTOF_ERROR_NO_MEM;
 		}
+		LOGI("[frame_data]addr:%p, size:%d\n", frame_data, sizeof(FrameData_t)*DEPTHMAP_W*DEPTHMAP_H+DEPTHMAP_W);
 	}
     memset(frame_data,0,sizeof(FrameData_t)*DEPTHMAP_W*DEPTHMAP_H+DEPTHMAP_W);
 	if (pNeolixDepthData == NULL) {
-			LOGI("getMars04DepthData: malloc for neolixdepth\n");
-			pNeolixDepthData=(DepthPixel_t*)malloc(sizeof(DepthPixel_t)*DEPTHMAP_W*DEPTHMAP_H);
-			if (NULL == pNeolixDepthData) {
-				LOGI("getMars04DepthData malloc pNeolixDepthData fail\n");
-				return LTOF_ERROR_NO_MEM;
-			}
-			LOGI("depth addr:%p, size:%d\n", pNeolixDepthData, sizeof(DepthPixel_t)*DEPTHMAP_W*DEPTHMAP_H);
+		LOGI("getMars04DepthData: malloc for neolixdepth data\n");
+		pNeolixDepthData=(DepthPixel_t*)malloc(sizeof(DepthPixel_t)*DEPTHMAP_W*DEPTHMAP_H);
+		if (NULL == pNeolixDepthData) {
+			LOGI("getMars04DepthData malloc pNeolixDepthData fail\n");
+			return LTOF_ERROR_NO_MEM;
+		}
+		LOGI("[neolix depth data] addr:%p, size:%d\n", pNeolixDepthData, sizeof(DepthPixel_t)*DEPTHMAP_W*DEPTHMAP_H);
 	}
 	memset(pNeolixDepthData,0,sizeof(DepthPixel_t)*DEPTHMAP_W*DEPTHMAP_H);
-
-
 	if (frame_data_Rgb == NULL) {
-		LOGI("getMars04DepthData: malloc for rgb\n");
+		LOGI("getMars04DepthData: malloc for rgb data\n");
 		frame_data_Rgb = (FrameDataRgb_t*)malloc(sizeof(FrameDataRgb_t)*DEPTHMAP_W*DEPTHMAP_H+DEPTHMAP_W);
 		if (NULL == frame_data_Rgb) {
-		LOGI("getMars04DepthData malloc  frame_data_Rgb fail\n");
-		return LTOF_ERROR_NO_MEM;
+			LOGI("getMars04DepthData malloc  frame_data_Rgb fail\n");
+			return LTOF_ERROR_NO_MEM;
 		}
+		LOGI("[frame_data_Rgb] addr:%p size:%d\n", frame_data_Rgb, sizeof(FrameDataRgb_t)*DEPTHMAP_W*DEPTHMAP_H+DEPTHMAP_W);
 	}
 	memset(frame_data_Rgb,0,sizeof(FrameDataRgb_t)*DEPTHMAP_W*DEPTHMAP_H+DEPTHMAP_W);
 	static	 FrameData_t* frame_data_p;
 	static     	FrameDataRgb_t* frame_data_Rgb_tmp;
     frame_data_p = frame_data;
     frame_data_Rgb_tmp = frame_data_Rgb;
-	rs = libtoftemp->LibTOF_RcvDepthFrame2(frame_data_p, frame_data_Rgb_tmp,DEPTHMAP_W, DEPTHMAP_H);
-	
-        if(rs != LTOF_SUCCESS)
-        {
-			LOGI("getMars04DepthData LibTOF_RcvDepthFrame2 errno[%d]\n", rs);
-			usleep(100);
-			return rs;
-        }
-		 if (0/*P_HEAD*/)//获取每帧图像附加在后边的信息.
-        {
-            S_MetaData depth_head;
-            S_MetaData drgb_head;
-            //memset(head,0,sizeof(S_MetaData));
-            memcpy(&depth_head,(unsigned char*)(frame_data+DEPTHMAP_W*DEPTHMAP_H),sizeof(S_MetaData));
-            memcpy(&drgb_head,(unsigned char*)(frame_data_Rgb+DEPTHMAP_W*DEPTHMAP_H),sizeof(S_MetaData));
-            LOGI("depth:[%4d] [%2d %2d]  %d\n",depth_head.frameCount,depth_head.width,depth_head.height,depth_head.getFrameTime);
-            LOGI("rgbd :[%4d] [%2d %2d]  %d\n",drgb_head.frameCount,drgb_head.width,drgb_head.height,depth_head.getFrameTime);
-            //free(head);
-        }
+	LOGI("LibTOF_RcvDepthFrame2:libtof pointer to addr:%p\n", libtof);
+	LOGI("LibTOF_RcvDepthFrame2:frame_data_p pointer to addr:%p\n", frame_data_p);
+	LOGI("LibTOF_RcvDepthFrame2:frame_data_Rgb_tmp pointer to addr:%p\n", frame_data_Rgb_tmp);
+	LOGI("LibTOF_RcvDepthFrame2:DEPTHMAP_W = %d, DEPTHMAP_H = %d\n", DEPTHMAP_W, DEPTHMAP_H);
+	rs = libtof->LibTOF_RcvDepthFrame2(frame_data_p, frame_data_Rgb_tmp,DEPTHMAP_W, DEPTHMAP_H);
+	if(rs != LTOF_SUCCESS)
+    {
+		LOGI("getMars04DepthData LibTOF_RcvDepthFrame2 errno[%d]\n", rs);
+		//usleep(100);
+		return rs;
+    }
         if(1)   //可以写入文件,此处可以将深度数据提取出来.
         {
          static int i,j;

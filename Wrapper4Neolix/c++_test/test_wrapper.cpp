@@ -2,9 +2,9 @@
 #include <stdio.h>
 #include <unistd.h>
 using namespace sunny;
-int main()
+void test()
 {
-	DeviceInfo_t dev;
+		DeviceInfo_t dev;
 	TOF_ErrorCode_t ret;
 	memset(&dev, 0, sizeof(dev));
 	printf("prepare to connect Mars04!!\n");
@@ -19,9 +19,17 @@ int main()
        		dev.VisibleFrameWidth,
         	dev.VisibleFrameHeight);
 	printf("prepare to connect Mars04!!\n");
-	sleep(10);
+	sleep(1);
 	ret = DisconnectMars04();
 	if(ret != LTOF_SUCCESS)
 		printf("disconnect fail!! errno:%d\n", ret);
+}
+int main()
+{
+	
+	int i = 3;
+	while (i-- != 0) {
+			test();
+		}
 	return 0;
 }

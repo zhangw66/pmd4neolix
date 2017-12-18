@@ -22,10 +22,10 @@ include $(PREBUILT_SHARED_LIBRARY)
 include $(CLEAR_VARS)
 LOCAL_MODULE := mars04_sdk_wrapper 
 ifeq ($(TARGET_ARCH_ABI),arm64-v8a)
-LOCAL_SRC_FILES := ../libs/arm64-v8a/libmars04_sdk_wrapper.so
+LOCAL_SRC_FILES := ../obj/local/arm64-v8a/libmars04_sdk_wrapper.so
 #NDK_APP_DST_DIR := ./pmd_sdk/arm64-v8a/
 else
-LOCAL_SRC_FILES := ../libs/armeabi-v7a/libmars04_sdk_wrapper.so
+LOCAL_SRC_FILES := ../obj/local/armeabi-v7a/libmars04_sdk_wrapper.so
 #NDK_APP_DST_DIR := ./pmd_sdk/armeabi-v7a/
 endif
 include $(PREBUILT_SHARED_LIBRARY)

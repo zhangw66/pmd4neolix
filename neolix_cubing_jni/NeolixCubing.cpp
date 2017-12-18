@@ -1,4 +1,3 @@
-//#include "com_neolix_neolixcubing_NeolixCubing.h"
 #include <jni.h>
 #include "Mars04_SDK_Wrapper.h"
 #include "neolixMV.h"
@@ -10,6 +9,11 @@ extern "C" {
 #define LOG_TAG "neolix_cubing_jni"
 #define LOGI(...) ((void)__android_log_print(ANDROID_LOG_INFO, LOG_TAG, __VA_ARGS__))
 #define LOGE(...) ((void)__android_log_print(ANDROID_LOG_ERROR, LOG_TAG, __VA_ARGS__))
+#define JNI_LOG_VERBOSE
+#define CLASS_NAME Java_com_neolix_neolixcubing_MainActivity_
+#define JNI_FUNC_NAME(prefix, name) prefix##name 
+#define EXTAND_FUNC_NAME(class_name, func_name) JNI_FUNC_NAME(class_name, func_name)
+
 //camera的内参,暂时写死,可以拿到,算法需要
 static  double internalCoefficient[] = {216.366592,216.764084,113.697975,86.6220627};
 //算法需要的结构{frame.width, frame.height, frame.data}
@@ -18,23 +22,11 @@ static neolix::depthData depthData;
 static double parameter[3] = {0.0};
 //存储算法需要的像素坐标
 static neolix::rect safeZone, measureZone;
-/*typedef struct VOLUME
-{
-       float length;
-       float width;
-       float height;
-}vol_t;
-typedef struct {
-	unsigned char red;
-	unsigned char green;
-	unsigned char blue;
-} FrameDataRgb_t;*/
-
 FrameDataRgb_t *pColorImage = NULL;    //指向伪彩色缓存,size:w*h*bpp3
 DepthPixel_t   *pDepthData = NULL;     //指向深度数据缓存,size:w*h*bpp2
 DeviceInfo_t devInfo;                  //存储Mars04的基本设备信息.
-DeviceInfo_t *deviceinfo = &devInfo;
-//
+
+//调用app的线程所需要
 JavaVM *m_vm;
 jmethodID m_amplitudeCallbackID;
 jobject m_obj;
@@ -42,37 +34,43 @@ jobject m_obj;
 void getMars04DepthDataCb(void *psrc, int len)
 {
 	static neolix::depthData depthData;
+#ifdef JNI_LOG_VERBOSE
 	LOGI("getMars04DepthDataCb\n");
+#endif
 	//储存,根据需要做转换,比如需要转换为伪彩色.
 	if (psrc != NULL && pColorImage != NULL && pDepthData != NULL) {
+		#ifdef JNI_LOG_VERBOSE
 		LOGI("getMars04DepthDataCb ===>psrc:%p, h:%d, w:%d, len:%d\n", psrc, depthData.height, depthData.width, len);
+		#endif
 		depthData.width =  devInfo.DepthFrameWidth;
 		depthData.height = devInfo.DepthFrameHeight;
 		depthData.data = psrc;
+#ifdef JNI_LOG_VERBOSE
 		LOGI("prepare to memcpy depth data to jni sapce!!!!\n");
+#endif
 		memcpy(pDepthData, psrc, len);
 		neolix::getDepthColor(depthData,pColorImage);
+		#ifdef JNI_LOG_VERBOSE
 		LOGI("center pixel depth data:%d, r:%x, g:%x, b:%x\n", ((DepthPixel_t*)(depthData.data))[86*224+112], 
 			pColorImage[86*224+112].r, 
 			pColorImage[86*224+112].g,
 			pColorImage[86*224+112].b);
 		LOGI("get depth color success!!!\n");
+		#endif
 		// fill a temp structure to use to populate the java int array
         jint fill[depthData.width * depthData.height];
 		 int i;
         for (i = 0; i < depthData.width * depthData.height; i++)
         {
-            // use min value and span to have values between 0 and 255 (for visualisation)
-            //fill[i] = (int) ( ( (data->points.at (i).grayValue - min) / (float) span) * 255.0f);
-			//pColorImage[i];
-			// set same value for red, green and blue; alpha to 255; to create gray image
-            fill[i] = pColorImage[i].b | pColorImage[i].g << 8 | pColorImage[i].r << 16 | 255 << 24;
+            fill[i] = pColorImage[i].r | pColorImage[i].g << 8 | pColorImage[i].b << 16 | 255 << 24;
         }
+#ifdef JNI_LOG_VERBOSE
 		LOGI("convert rgb to argb!!!!!!\n");
-        // attach to the JavaVM thread and get a JNI interface pointer
+#endif
+		// attach to the JavaVM thread and get a JNI interface pointer
         JNIEnv *env;
         m_vm->AttachCurrentThread ( (JNIEnv **) &env, NULL);
-		LOGI("AttachCurrentThread!!!!!!\n");
+		//LOGI("AttachCurrentThread!!!!!!\n");
 
         // create java int array
         jintArray intArray = env->NewIntArray (depthData.height * depthData.width);
@@ -80,17 +78,21 @@ void getMars04DepthDataCb(void *psrc, int len)
         // populate java int array with fill data
         env->SetIntArrayRegion (intArray, 0, depthData.height * depthData.width, fill);
 
+#ifdef JNI_LOG_VERBOSE
 		LOGI("invoke env->CallVoidMethod!!!!!!\n");
-
+#endif
         // call java method and pass amplitude array
         env->CallVoidMethod (m_obj, m_amplitudeCallbackID, intArray);
-		
+#ifdef JNI_LOG_VERBOSE		
 		LOGI("invoke env->CallVoidMethod OK!!!!!!\n");
+#endif
 		// detach from the JavaVM thread
         m_vm->DetachCurrentThread();
 		
 	}
-		
+	else {
+		LOGE("getMars04DepthDataCb:find nullptr!!!!!!!!!!\n");
+	}	
 	//回调APP的方法,将数据复制过去.
 }
 /*
@@ -99,26 +101,11 @@ void getMars04DepthDataCb(void *psrc, int len)
  * Signature: (Lcom/neolix/neolixcubing/DeviceInfo;)Z
  */
 
-jboolean JNICALL Java_com_neolix_neolixcubing_NeolixCubing_connectCamera
+jboolean JNICALL EXTAND_FUNC_NAME(CLASS_NAME, connectCamera)
   (JNIEnv *env, jclass jc, jobject dev_obj)
 {
 	LOGI("Java_com_neolix_neolixcubing_NeolixCubing_connectCamera\n");
 	TOF_ErrorCode_t rs = LTOF_SUCCESS; 
-			/*
-	  uint32_t  DeviceVersion;
-    uint32_t  DeviceType;
-    uint16_t  DepthFrameWidth;
-    uint16_t  DepthFrameHeight;
-    uint16_t  BitsPerPoint;
-    uint16_t  VisibleFrameWidth;
-    uint16_t  VisibleFrameHeight;
-    uint16_t  BitsPerPixel;
-    uint16_t  BlockSizeIn;
-    uint16_t BlockSizeOut;
-    char    TofAlgVersion[20];
-    char    DeviceId[19];
-    uint8_t RgbdEn;
-    */
 	rs = sunny::ConnectMars04(devInfo);
 			
 	if (rs != LTOF_SUCCESS) {
@@ -126,12 +113,12 @@ jboolean JNICALL Java_com_neolix_neolixcubing_NeolixCubing_connectCamera
         return false;
 	}
 	LOGI("device ID:%s \ndeviceInfo:%s\nDepth Data:w-%d h-%d \nvisiableData:w-%d h-%d \n"
-            ,deviceinfo->DeviceId,
-            deviceinfo->TofAlgVersion,
-            deviceinfo->DepthFrameWidth,
-        	--(deviceinfo->DepthFrameHeight),//减去一行头长度，這裏注意
-       		deviceinfo->VisibleFrameWidth,
-        	deviceinfo->VisibleFrameHeight);
+            ,devInfo.DeviceId,
+            devInfo.TofAlgVersion,
+            devInfo.DepthFrameWidth,
+        	--(devInfo.DepthFrameHeight),//减去一行头长度，這裏注意
+       		devInfo.VisibleFrameWidth,
+        	devInfo.VisibleFrameHeight);
 	//注册jni层获得深度数据的回调函数
 	sunny::registerJNIGetDepthCB(getMars04DepthDataCb);
 	//应用层需要拿到设备的基本信息,如:宽度,长度
@@ -143,9 +130,9 @@ jboolean JNICALL Java_com_neolix_neolixcubing_NeolixCubing_connectCamera
         return false;
     }
     fid = (env)->GetFieldID(clazz, "DepthFrameWidth", "S");
-    (env)->SetShortField(dev_obj, fid, deviceinfo->DepthFrameWidth);
+    (env)->SetShortField(dev_obj, fid, devInfo.DepthFrameWidth);
 	fid = (env)->GetFieldID(clazz, "DepthFrameHeight", "S");
-    (env)->SetShortField(dev_obj, fid, deviceinfo->DepthFrameHeight);
+    (env)->SetShortField(dev_obj, fid, devInfo.DepthFrameHeight);
 	
 	//分配存储伪彩色的区域.
 	pDepthData = new DepthPixel_t[devInfo.DepthFrameHeight*devInfo.DepthFrameWidth];
@@ -174,7 +161,7 @@ jboolean JNICALL Java_com_neolix_neolixcubing_NeolixCubing_connectCamera
  * Method:    disconnectCamera
  * Signature: ()Z
  */
-jboolean JNICALL Java_com_neolix_neolixcubing_NeolixCubing_disconnectCamera
+jboolean JNICALL EXTAND_FUNC_NAME(CLASS_NAME, disconnectCamera)
 (JNIEnv *je, jclass jc)
 {
 	LOGI("Java_com_neolix_neolixcubing_NeolixCubing_disconnectCamera\n");
@@ -191,7 +178,7 @@ jboolean JNICALL Java_com_neolix_neolixcubing_NeolixCubing_disconnectCamera
  * Method:    setUseCase
  * Signature: (I)Z
  */
-jboolean JNICALL Java_com_neolix_neolixcubing_NeolixCubing_setUseCase
+jboolean JNICALL EXTAND_FUNC_NAME(CLASS_NAME, setUseCase)
  (JNIEnv *je, jclass jc, jint ucase)
  {
       TOF_ErrorCode_t ret = LTOF_SUCCESS;
@@ -205,7 +192,7 @@ jboolean JNICALL Java_com_neolix_neolixcubing_NeolixCubing_setUseCase
  * Method:    SetSafeArea
  * Signature: (IIII)Z
  */
-jboolean JNICALL Java_com_neolix_neolixcubing_NeolixCubing_SetSafeArea
+jboolean JNICALL EXTAND_FUNC_NAME(CLASS_NAME, SetSafeArea)
    (JNIEnv *je, jclass jc, jint x, jint y, jint width, jint height)
  {
         bool ret = true;
@@ -223,20 +210,16 @@ jboolean JNICALL Java_com_neolix_neolixcubing_NeolixCubing_SetSafeArea
  * Method:    SetMeasureArea
  * Signature: (IIII)Z
  */
-jboolean JNICALL Java_com_neolix_neolixcubing_NeolixCubing_SetMeasureArea
+jboolean JNICALL EXTAND_FUNC_NAME(CLASS_NAME, SetMeasureArea)
 (JNIEnv *je, jclass jc, jint x, jint y, jint width, jint height)
    {
-          bool ret = true;
-          LOGI("user set measure area: X coor:%d, Y coor:%d, width:%d, height:%d", x, y, width, height);
-		  memset(&measureZone, 0, sizeof(neolix::rect));
-		  safeZone.left_x = 62;
-		  safeZone.left_y = 6;
-		  safeZone.width = 159;
-		  safeZone.height = 116;
-		  measureZone.left_x = 62;
-		  measureZone.left_y = 6;
-		  measureZone.width = 159;
-		  measureZone.height = 116;
+   bool ret = true;
+   LOGI("user set measure area: X coor:%d, Y coor:%d, width:%d, height:%d", x, y, width, height);
+	memset(&measureZone, 0, sizeof(neolix::rect));
+		  measureZone.left_x = x;
+		measureZone.left_y = y;
+		measureZone.width = width;
+		measureZone.height = height;
 		  LOGI("safe zone X coor:%d, Y coor:%d, width:%d, height:%d",  
 		  safeZone.left_x,
 		  safeZone.left_y,
@@ -262,27 +245,24 @@ jboolean JNICALL Java_com_neolix_neolixcubing_NeolixCubing_SetMeasureArea
 		neolix::setParameter(parameter);
 		LOGI("backgroundReconstruction success!!!!!\n");
 		  return ret;
-   }
+}
 
 /*
  * Class:     com_neolix_neolixcubing_NeolixCubing
  * Method:    getCurrentVolume
  * Signature: ()Lcom/neolix/neolixcubing/Volume;
  */
-jboolean JNICALL Java_com_neolix_neolixcubing_NeolixCubing_getCurrentVolume
+jboolean JNICALL EXTAND_FUNC_NAME(CLASS_NAME, getCurrentVolume)
   (JNIEnv *env, jclass jc, jobject volumeobj)
 {
     jclass clazz;
     jfieldID fid;
     neolix::vol t;
-	
-	LOGI("w:%d, h:%d, [addr:%p]\n", depthData.width,
-		depthData.height,
-		depthData.data);
-					 //((DepthPixel_t*)(depthData.data))[86*224+112]
-	LOGI("z:%dcm\n", ((DepthPixel_t*)(depthData.data))[86*224+112]);
 	 if (neolix::measureVol(depthData,t))
-	 	LOGI("neolix::measureVol return true!!!\n");
+	 	LOGI("neolix::measureVol return true!!!height:%f, width:%f, length:%f\n",
+		t.height,
+		t.width,
+		t.length);
 	 else 
 	 	{
 	 	LOGI("neolix::measureVol return false!!!\n");
@@ -312,7 +292,11 @@ jboolean JNICALL Java_com_neolix_neolixcubing_NeolixCubing_getCurrentVolume
  * Method:    RegisterDispCallback
  * Signature: ()V
  */
-void JNICALL Java_com_neolix_neolixcubing_MainActivity_RegisterDispCallback
+ #define CLASS_NAME Java_com_neolix_neolixcubing_MainActivity_
+ #define JNI_FUNC_NAME(prefix, name) prefix##name 
+ #define EXTAND_FUNC_NAME(class_name, func_name) JNI_FUNC_NAME(class_name, func_name)
+
+void JNICALL EXTAND_FUNC_NAME(CLASS_NAME, RegisterDispCallback)
   (JNIEnv *env, jclass jc)
   {
   LOGI("Java_com_neolix_neolixcubing_NeolixCubing_RegisterDispCallback in\n");
@@ -332,6 +316,6 @@ void JNICALL Java_com_neolix_neolixcubing_MainActivity_RegisterDispCallback
     m_amplitudeCallbackID = env->GetMethodID (g_class, "amplitudeCallback", "([I)V");
 	LOGI("Java_com_neolix_neolixcubing_NeolixCubing_RegisterDispCallback end\n");
   }
-  #ifdef __cplusplus
+#ifdef __cplusplus
 }
 #endif
