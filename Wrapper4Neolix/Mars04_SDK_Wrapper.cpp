@@ -1,15 +1,20 @@
 #include "Mars04_SDK_Wrapper.h"
 namespace sunny {
+
+
 //global variable
 CLibTof *libtof = NULL;                         //pmd mars04 sdk class
 DeviceInfo_t *deviceinfo = NULL;                //mars04 dev class object
 FrameData_t* frame_data = NULL;		   			//指向存储深度数据的缓存,注意它的深度数据是点云的.
 FrameDataRgb_t* frame_data_Rgb = NULL;  		//指向存储彩图数据的缓存
 DepthPixel_t * pNeolixDepthData = NULL;         //新石器算法需要的深度数据格式.
+short * video_data = NULL;                      //获取相机的YUV数据    
+Mars04AllData_t mars04_all_data;                //包含Mars04设备中所有有效数据(灰度,彩色,深度).
+
 //下边是获取深度图的线程所用
 BOOL IS_Running=FALSE;                          //开始/停止获取深度数据
 BOOL thread_exit=FALSE;                         //退出获取深度数据的线程
-pthread_t pth_depth;
+pthread_t pth_get_data;
 //others
 unsigned char	 *PColorbuffer_s = NULL;
 int DEPTHMAP_W;
@@ -25,7 +30,7 @@ getDepthFunc_t g_getDepthCallback = NULL;       //指向JNI层获取深度数据
 #define LOG_TAG "mars04_wrapper_native"
 #define LOGI(...) ((void)__android_log_print(ANDROID_LOG_INFO, LOG_TAG, __VA_ARGS__))
 #define LOGE(...) ((void)__android_log_print(ANDROID_LOG_ERROR, LOG_TAG, __VA_ARGS__))
-TOF_ErrorCode_t getMars04DepthData(void);
+TOF_ErrorCode_t getMars04AllData(void);
 
 void registerJNIGetDepthCB(getDepthFunc_t getDepthCallback)
 {
@@ -36,7 +41,7 @@ void registerJNIGetDepthCB(getDepthFunc_t getDepthCallback)
 		LOGI("registerJNIGetDepthCB:fail callback is nullptr!!!\n");
 }
 
-void* get_depthdata_fuc(void* param)
+void* get_mars04data_fuc(void* param)
 {
 //    CLibTof* libtoftemp = (CLibTof*)param;
 	 while (!thread_exit)
@@ -46,9 +51,13 @@ void* get_depthdata_fuc(void* param)
             usleep(100);
             continue;
         }
-		/*rs = */getMars04DepthData();
+		/*rs = */getMars04AllData();
 	 }
 	 return NULL;
+}
+void setPreviewStatus(PREVIEW_STATUS sta)
+{
+	IS_Running = (sta == PREVIEW_START ? true : false); 
 }
 
 TOF_ErrorCode_t DisconnectMars04(void) {
@@ -57,7 +66,7 @@ TOF_ErrorCode_t DisconnectMars04(void) {
 	//断开设备连接，释放内存
 	IS_Running=FALSE;
 	thread_exit = TRUE;
-	pthread_join(pth_depth, NULL);
+	pthread_join(pth_get_data, NULL);
 	LOGI("thread exit success!!\n");
 	rv = libtof->LibTOF_DisConnect();
 	if (rv<0)
@@ -80,16 +89,15 @@ TOF_ErrorCode_t DisconnectMars04(void) {
 
 TOF_ErrorCode_t ConnectMars04(DeviceInfo_t &devInfo)
 {
+    TOF_ErrorCode_t rv = LTOF_SUCCESS;
 	deviceinfo = NULL;
 	libtof = NULL;
 	frame_data = NULL;
 	frame_data_Rgb = NULL;
 	g_getDepthCallback = NULL;
 	pNeolixDepthData = NULL;
-
-    TOF_ErrorCode_t rv = LTOF_SUCCESS;
+	memset(&mars04_all_data, 0, sizeof(Mars04AllData_t));
 	LOGI("ConnectMars04:libtof pointer to addr:%p\n", libtof);
-
 	libtof = new CLibTof();
 	#ifdef NATIVE_WRAPPER_DEBUG
     LOGI("------------------------------------------------\n");
@@ -121,7 +129,6 @@ TOF_ErrorCode_t ConnectMars04(DeviceInfo_t &devInfo)
         DEPTHMAP_H = deviceinfo->DepthFrameHeight-1;//减去一行头长度
         DEPTHVIDEO_W = deviceinfo->VisibleFrameWidth;
         DEPTHVIDEO_H = deviceinfo->VisibleFrameHeight;
-        //DEPTHVIDEO_FRAME_SIZE =DEPTHVIDEO_W*DEPTHVIDEO_H*BYTES_PER_POINT;
 #ifdef NATIVE_WRAPPER_DEBUG
 
         LOGI("device ID:%s \ndeviceInfo:%s\nDepth Data:w-%d h-%d \nvisiableData:w-%d h-%d \n"
@@ -133,7 +140,7 @@ TOF_ErrorCode_t ConnectMars04(DeviceInfo_t &devInfo)
             IS_RGBD=TRUE;
             IS_RGB=TRUE;
         }
-
+		//出来的数据是I420
         DEPTHVIDEO_FRAME_SIZE = ROUND_UP(DEPTHVIDEO_W*DEPTHVIDEO_H*3/2+DEPTHVIDEO_W,1024);//尾部带一行帧信息
     }
 
@@ -152,9 +159,9 @@ TOF_ErrorCode_t ConnectMars04(DeviceInfo_t &devInfo)
 
 	//启动线程,开始拿到数据.
 	thread_exit = FALSE;
-	IS_Running = TRUE;
+	IS_Running = FALSE;
     //创建取数据线程
-   	pthread_create(&pth_depth,NULL,get_depthdata_fuc,libtof);
+   	pthread_create(&pth_get_data,NULL,get_mars04data_fuc,libtof);
 	LOGI("get depth data thread is running!!!\n");
 	return (rv );
 }
@@ -175,51 +182,69 @@ TOF_ErrorCode_t setMars04SceneMode(SceneMode_e umode)
 
 
 //下边的函数最好使用线程来调用,LibTOF_RcvDepthFrame2函数会发生阻塞.
-TOF_ErrorCode_t getMars04DepthData(void)
+TOF_ErrorCode_t getMars04AllData(void)
 {
     static TOF_ErrorCode_t rs = LTOF_SUCCESS;
 	if (frame_data == NULL) {
-		LOGI("getMars04DepthData: malloc for depth data\n");
+		LOGI("getMars04AllData: malloc for depth data\n");
 		frame_data=(FrameData_t*)malloc(sizeof(FrameData_t)*DEPTHMAP_W*DEPTHMAP_H+DEPTHMAP_W);
 		if (NULL == frame_data) {
-			LOGI("getMars04DepthData malloc frame_data fail\n");
+			LOGI("getMars04AllData malloc frame_data fail\n");
 			return LTOF_ERROR_NO_MEM;
 		}
 		LOGI("[frame_data]addr:%p, size:%d\n", frame_data, sizeof(FrameData_t)*DEPTHMAP_W*DEPTHMAP_H+DEPTHMAP_W);
 	}
     memset(frame_data,0,sizeof(FrameData_t)*DEPTHMAP_W*DEPTHMAP_H+DEPTHMAP_W);
 	if (pNeolixDepthData == NULL) {
-		LOGI("getMars04DepthData: malloc for neolixdepth data\n");
+		LOGI("getMars04AllData: malloc for neolixdepth data\n");
 		pNeolixDepthData=(DepthPixel_t*)malloc(sizeof(DepthPixel_t)*DEPTHMAP_W*DEPTHMAP_H);
 		if (NULL == pNeolixDepthData) {
-			LOGI("getMars04DepthData malloc pNeolixDepthData fail\n");
+			LOGI("getMars04AllData malloc pNeolixDepthData fail\n");
 			return LTOF_ERROR_NO_MEM;
 		}
 		LOGI("[neolix depth data] addr:%p, size:%d\n", pNeolixDepthData, sizeof(DepthPixel_t)*DEPTHMAP_W*DEPTHMAP_H);
 	}
 	memset(pNeolixDepthData,0,sizeof(DepthPixel_t)*DEPTHMAP_W*DEPTHMAP_H);
 	if (frame_data_Rgb == NULL) {
-		LOGI("getMars04DepthData: malloc for rgb data\n");
+		LOGI("getMars04AllData: malloc for rgb data\n");
 		frame_data_Rgb = (FrameDataRgb_t*)malloc(sizeof(FrameDataRgb_t)*DEPTHMAP_W*DEPTHMAP_H+DEPTHMAP_W);
 		if (NULL == frame_data_Rgb) {
-			LOGI("getMars04DepthData malloc  frame_data_Rgb fail\n");
+			LOGI("getMars04AllData malloc  frame_data_Rgb fail\n");
 			return LTOF_ERROR_NO_MEM;
 		}
 		LOGI("[frame_data_Rgb] addr:%p size:%d\n", frame_data_Rgb, sizeof(FrameDataRgb_t)*DEPTHMAP_W*DEPTHMAP_H+DEPTHMAP_W);
 	}
 	memset(frame_data_Rgb,0,sizeof(FrameDataRgb_t)*DEPTHMAP_W*DEPTHMAP_H+DEPTHMAP_W);
+	if (video_data == NULL) {
+		LOGI("getMars04AllData: malloc for video data\n");
+		video_data = (short*)malloc(DEPTHVIDEO_FRAME_SIZE);
+		if (NULL == video_data) {
+			LOGI("getMars04AllData malloc  video_data fail\n");
+			return LTOF_ERROR_NO_MEM;
+		}
+		LOGI("[video_data] addr:%p size:%d\n", video_data, DEPTHVIDEO_FRAME_SIZE);
+	}
+	memset(video_data,0,DEPTHVIDEO_FRAME_SIZE);
 	static	 FrameData_t* frame_data_p;
 	static     	FrameDataRgb_t* frame_data_Rgb_tmp;
     frame_data_p = frame_data;
     frame_data_Rgb_tmp = frame_data_Rgb;
-	LOGI("LibTOF_RcvDepthFrame2:libtof pointer to addr:%p\n", libtof);
+	//LOGI("LibTOF_RcvDepthFrame2:libtof pointer to addr:%p\n", libtof);
 	LOGI("LibTOF_RcvDepthFrame2:frame_data_p pointer to addr:%p\n", frame_data_p);
-	LOGI("LibTOF_RcvDepthFrame2:frame_data_Rgb_tmp pointer to addr:%p\n", frame_data_Rgb_tmp);
+	//LOGI("LibTOF_RcvDepthFrame2:frame_data_Rgb_tmp pointer to addr:%p\n", frame_data_Rgb_tmp);
 	LOGI("LibTOF_RcvDepthFrame2:DEPTHMAP_W = %d, DEPTHMAP_H = %d\n", DEPTHMAP_W, DEPTHMAP_H);
 	rs = libtof->LibTOF_RcvDepthFrame2(frame_data_p, frame_data_Rgb_tmp,DEPTHMAP_W, DEPTHMAP_H);
 	if(rs != LTOF_SUCCESS)
     {
-		LOGI("getMars04DepthData LibTOF_RcvDepthFrame2 errno[%d]\n", rs);
+		LOGI("getMars04AllData LibTOF_RcvDepthFrame2 errno[%d]\n", rs);
+		//usleep(100);
+		return rs;
+    }
+	LOGI("LibTOF_RcvVideoFrame:video data buf addr:%p, size:%d\n", video_data, DEPTHVIDEO_FRAME_SIZE);
+	rs = libtof->LibTOF_RcvVideoFrame(video_data, DEPTHVIDEO_FRAME_SIZE);
+	if(rs != LTOF_SUCCESS)
+    {
+		LOGI("getMars04AllData LibTOF_RcvDepthFrame errno[%d]\n", rs);
 		//usleep(100);
 		return rs;
     }
@@ -255,8 +280,19 @@ TOF_ErrorCode_t getMars04DepthData(void)
 					#endif
             }
         }
+		mars04_all_data.pDepthData = pNeolixDepthData;
+		mars04_all_data.depth_data_size = sizeof(DepthPixel_t)*DEPTHMAP_W*DEPTHMAP_H;
+		mars04_all_data.pVideoData = video_data;
+		mars04_all_data.video_data_size = DEPTHVIDEO_FRAME_SIZE;
+		LOGI("mars04_data_info:\n");
+		LOGI("pDepthData:%p depth_data_size:%d pVideoData:%p video_data_size:%d\n", 
+			mars04_all_data.pDepthData,
+			mars04_all_data.depth_data_size,
+			mars04_all_data.pVideoData,
+			mars04_all_data.video_data_size
+			);
 		if (g_getDepthCallback != NULL)
-			g_getDepthCallback(pNeolixDepthData, sizeof(DepthPixel_t)*DEPTHMAP_W*DEPTHMAP_H);
+			g_getDepthCallback(mars04_all_data);
 		return LTOF_SUCCESS;
 	}
 }

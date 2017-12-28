@@ -7,7 +7,8 @@ include $(CLEAR_VARS)
 OPENCV_LIB_TYPE=STATIC 
 include ./opencv/native/jni/OpenCV.mk 
 # set path to source
-MY_FILES_PATH := $(LOCAL_PATH)/
+MY_FILES_PATH := $(LOCAL_PATH)/neolixai
+MY_FILES_PATH += $(LOCAL_PATH)/opencv
 #$(warning "MY_FILES_PATH are =================$(MY_FILES_PATH)")
 #====================================================================
 # 配置自己的源文件目录和源文件后缀名
